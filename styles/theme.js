@@ -7,9 +7,10 @@ const deviceSizes = {
 
 const device = {
   mobileS: `@media screen and (max-width: ${deviceSizes.mobileS})`,
-  mobileL: `@media screen and (max-width: ${deviceSizes.tablet})`,
-  tabletS: `@media screen and (max-width: ${deviceSizes.desktop})`,
-  tabletL: `@media screen and (min-width: ${deviceSizes.tablet}) and (max-width: ${deviceSizes.desktop})`,
+  mobileL: `@media screen and (max-width: ${deviceSizes.tablet})`, // 767 이하
+  tabletL: `@media screen and (max-width: ${deviceSizes.desktop})`, // 1200 이하
+  tabletWidthDesktop: `@media screen and (min-width: ${deviceSizes.tablet})`,
+  onlyTablet: `@media screen and (min-width: ${deviceSizes.tablet}) and (max-width: ${deviceSizes.desktop})`,
   desktop: `@media screen and (min-width: ${deviceSizes.desktop})`,
 }
 const colors = {

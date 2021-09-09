@@ -1,69 +1,56 @@
 import React, { useEffect, useState } from "react"
-import Image from "next/image"
-import { useRouter } from "next/router"
 
-import styled, { keyframes } from "styled-components"
-import hand from "../public/waving-hand.png"
+import styled from "styled-components"
 import Layout from "../components/Layout"
-import Loading from "../components/Loading"
+import HandShaking from "../components/HandShaking"
+import ProjectList from "../components/ProjectList"
+import Typing from "../components/Typing"
 
 const Main = () => {
-  const [loading, setLoading] = useState(true)
-  useEffect(() => {
-    const timer = setTimeout(() => {}, 5000)
-  }, [])
   return (
     <>
       <Layout>
-        <section>
+        <MainSection>
           <h2>welcome!</h2>
-          <p>
-            안녕하세요.
-            <Hand>
-              <Image src={hand} alt="hello" />
-            </Hand>
-            Front-end developer 이채영입니다.
-          </p>
-        </section>
+          <MyDesc>
+            <p>
+              안녕하세요.
+              <HandShaking />
+              <Typing />
+              Front-end developer 이채영입니다.
+            </p>
+            <MyInfo>ph.01095288527</MyInfo>
+          </MyDesc>
+        </MainSection>
+        <ProjectList />
       </Layout>
     </>
   )
 }
-
-const Shaking = keyframes`
-    0% {
-        transform: rotate(0)
+const MainSection = styled.section`
+  padding: 6rem 6rem 4rem;
+  height: 100vh;
+  box-sizing: border-box;
+  ${({ theme }) => theme.device.tabletL} {
+    padding: 2rem;
+  }
+  & h2 {
+    padding-top: 12rem;
+    font-size: 13vw;
+    ${({ theme }) => theme.device.tabletL} {
+      font-size: 6rem;
     }
-
-    10% {
-        transform: rotate(-10deg)
-    }
-
-    20% {
-        transform: rotate(12deg)
-    }
-
-    30% {
-        transform: rotate(-10deg)
-    }
-
-    40% {
-        transform: rotate(9deg)
-    }
-
-    50% {
-        transform: rotate(0)
-    }
-
-    100% {
-        transform: rotate(0)
-    }
+  }
 `
-
-const Hand = styled.span`
-  margin-right: 3px;
-  animation: 2.5s infinite ${Shaking};
-  transform-origin: 70% 70%;
-  display: inline-block;
+const MyDesc = styled.div`
+  ${({ theme }) => theme.device.desktop} {
+    display: flex;
+  }
+  & p {
+    flex: 7;
+  }
+`
+const MyInfo = styled.div`
+  flex: 3;
 `
 export default Main

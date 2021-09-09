@@ -6,9 +6,10 @@ import reset from "styled-reset"
 const GlobalStyle = createGlobalStyle`
 ${reset};
     html,body{
+
         padding: 0;
         margin: 0;
-        font-family:-apple-system, 'Source Code Pro', monospace,BlinkMacSystemFont, "Noto Sans KR", Roboto, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";   
+        font-family:-apple-system, 'Source Code Pro', "Noto Sans KR", BlinkMacSystemFont,  Roboto, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";   
         font-size:10px;
     };
     body{
@@ -35,5 +36,6 @@ ${reset};
     li{
         list-style:none;
     }
+
 `
 export default GlobalStyle
