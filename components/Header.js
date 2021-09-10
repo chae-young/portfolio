@@ -1,18 +1,24 @@
-import React from "react"
+import React, { useState } from "react"
 import Link from "next/link"
 
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 const Header = () => {
+  const [navActive, setNavAtive] = useState(false)
+  const onClickNav = () => {
+    setNavAtive((prev) => !prev)
+  }
   return (
     <HeaderWrap>
-      <Nav>
+      <Link href="/">
+        <a>로고</a>
+      </Link>
+      <Hamburger onClick={onClickNav} active={navActive}>
+        <span />
+      </Hamburger>
+      <Nav active={navActive}>
         <ul>
-          <li>
-            <Link href="/">
-              <a>로고</a>
-            </Link>
-          </li>
+          <li />
           <li>
             <Link href="/projects">Projects</Link>
           </li>
@@ -31,6 +37,7 @@ const HeaderWrap = styled.header`
   position: fixed;
   left: 0;
   top: 0;
+  z-index: 8;
   width: 100%;
   padding: 1rem 6rem;
   box-sizing: border-box;
@@ -38,26 +45,64 @@ const HeaderWrap = styled.header`
     padding: 1rem 2rem;
   }
 `
+const HamburgerElement = css`
+  width: 30px;
+  height: 1px;
+  background-color: #000;
+  border-radius: 0;
+  position: absolute;
+  transition: transform 0.15s ease;
+`
+const Hamburger = styled.button`
+  position: absolute;
+  right: 4rem;
+  top: 2rem;
+  z-index: 9;
+  width: 30px;
+  height: 24px;
+  ${({ theme }) => theme.device.tabletL} {
+    right: 2rem;
+  }
+  > span {
+    display: block;
+    top: 50%;
+    margin-top: -2px;
+    transform: ${(props) => (props.active ? "rotate(45deg)" : "rotate(0deg)")};
+    ${HamburgerElement}
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      ${HamburgerElement}
+      opacity: ${(props) => (props.active ? 0 : 1)};
+    }
+    &:before {
+      top: -8px;
+    }
+    &:after {
+      bottom: ${(props) => (props.active ? 0 : "-8px")};
+      transform: ${(props) =>
+        props.active ? "rotate(90deg)" : "rotate(0deg)"};
+      opacity: 1;
+    }
+  }
+`
 const Nav = styled.nav`
-  & ul {
-    display: flex;
-    > li {
-      > a {
+  position: absolute;
+  right: 4rem;
+  top: 64px;
+  display: ${(props) => (props.active ? "block" : "none")};
+  padding: 2rem;
+  background: ${({ theme }) => theme.colors.black};
+  ${({ theme }) => theme.device.tabletL} {
+    right: 2rem;
+  }
+  > ul {
+    li {
+      line-height: 2;
+      a {
         font-size: 1.4rem;
-      }
-      &:nth-child(1) {
-        flex: 1;
-      }
-      &:nth-child(2) {
-        flex: 7;
-        ${({ theme }) => theme.device.mobileL} {
-          flex: 2;
-        }
-      }
-      &:nth-child(3),
-      &:nth-child(4) {
-        flex: 1;
-        text-align: right;
+        color: rgb(255, 255, 255);
       }
     }
   }
