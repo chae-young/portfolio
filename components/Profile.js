@@ -1,5 +1,4 @@
 import React from "react"
-import Image from "next/image"
 
 import styled from "styled-components"
 import HandShaking from "./HandShaking"
@@ -7,7 +6,7 @@ import HandShaking from "./HandShaking"
 const ProfileObj = {
   name: "이채영",
   birthday: "1995-02-23",
-  phone: "01095288527",
+  phone: "010-9528-8527",
   school: "백제예술대학 연예매니지먼트 졸업",
   education: "2017.02 ~ 07 한국직업전문학교 웹표준 퍼블리싱 실무자 양성 수료",
 }
@@ -17,12 +16,7 @@ const Profile = () => {
     <ProfileBox>
       <MyImg>
         <div>
-          <Image
-            src="/images/about/me.jpg"
-            layout="intrinsic"
-            width={2734}
-            height={3646}
-          />
+          <img src="/images/about/me.jpg" width="100%" />
         </div>
       </MyImg>
       <MyInfo>
@@ -31,8 +25,8 @@ const Profile = () => {
           <HandShaking />
           <br /> frontend developer 이채영 입니다. <br />
           <b>
-            저는 새로운 지식을 배우는 걸 좋아하고 <br />
-            배운 지식을 나만의것으로 만드는 것을 목표로 삼고있습니다.
+            저는 새로운 지식을 배우는 걸 좋아하고 배운 지식을 나만의것으로
+            만드는 것을 목표로 삼고있습니다.
           </b>
         </p>
         <dl>
@@ -72,7 +66,7 @@ const MyImg = styled.div`
   display: flex;
 
   > div {
-    width: 60%;
+    width: 80%;
     margin: auto;
   }
 `
@@ -80,7 +74,7 @@ const MyInfo = styled.div`
   padding-left: 2rem;
   font-size: 1.4rem;
   ${({ theme }) => theme.device.mobileL} {
-    padding: 0;
+    padding: 0 2rem;
     margin: 2rem 0 0;
   }
 

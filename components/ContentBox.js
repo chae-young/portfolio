@@ -8,7 +8,7 @@ const ContentBox = ({ children, title }) => {
     <Content
       style={
         title === "About"
-          ? { background: "rgb(36 232 127)" }
+          ? { background: "rgb(255 247 222)" }
           : { background: "rgb(255,255,255)" }
       }
     >
@@ -23,14 +23,20 @@ const Title = ({ children }) => {
 }
 
 const Content = styled.section`
-  padding: 6rem;
+  padding: 12rem 0rem 6rem;
   ${({ theme }) => theme.device.tabletL} {
-    padding: 0 2rem;
+    padding: 10rem 0 0;
   }
 `
 const TitleStyle = styled.h2`
-  margin-bottom: 6rem;
+  padding: 0 6rem;
+  margin-bottom: 15rem;
   font-size: 8rem;
+  ${({ theme }) => theme.device.tabletL} {
+    padding: 0 2rem;
+    margin-bottom: 10rem;
+    font-size: 4rem;
+  }
 `
 ContentBox.propTypes = {
   children: PropTypes.node.isRequired,

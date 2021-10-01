@@ -10,9 +10,13 @@ const Header = () => {
   }
   return (
     <HeaderWrap>
-      <Link href="/">
-        <a>로고</a>
-      </Link>
+      <Logo>
+        <Link href="/">
+          <a>
+            <img src="/images/logo.png" width="100%" alt="이채영 포트폴리오" />
+          </a>
+        </Link>
+      </Logo>
       <Hamburger onClick={onClickNav} active={navActive}>
         <span />
       </Hamburger>
@@ -33,6 +37,9 @@ const Header = () => {
     </HeaderWrap>
   )
 }
+const Logo = styled.h1`
+  width: 60px;
+`
 const HeaderWrap = styled.header`
   position: fixed;
   left: 0;

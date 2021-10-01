@@ -9,16 +9,34 @@ const Footer = () => {
       <MailLink>
         <a href="mailto:leechaeng2222@gmail.com">leechaeng2222@gmail.com</a>
       </MailLink>
-      <LinkList>
-        <li>
-          <a>Blog</a>
-        </li>
-        <li>
-          <a>Github</a>
-        </li>
-      </LinkList>
+      <LinkList />
       <Copy>© 2021. All Rights Reserved.</Copy>
     </FooterWrap>
+  )
+}
+
+export const LinkList = () => {
+  return (
+    <LinkLisBox>
+      <li>
+        <a
+          href="https://chaeyoung2.tistory.com/"
+          target="_blanck"
+          rel="noreferrer noopener"
+        >
+          Blog
+        </a>
+      </li>
+      <li>
+        <a
+          href=" https://github.com/chae-young"
+          target="_blanck"
+          rel="noreferrer noopener"
+        >
+          Github
+        </a>
+      </li>
+    </LinkLisBox>
   )
 }
 const FooterWrap = styled.footer`
@@ -35,7 +53,7 @@ const FooterWrap = styled.footer`
     }
   }
 `
-const LinkList = styled.ul`
+const LinkLisBox = styled.ul`
   display: flex;
   margin-top: 2rem;
   > li {

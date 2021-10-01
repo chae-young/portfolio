@@ -11,6 +11,7 @@ const App = ({ Component }) => {
     <>
       <Head>
         <title>이채영 포트폴리오</title>
+        <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>

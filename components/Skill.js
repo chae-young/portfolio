@@ -57,6 +57,7 @@ const Skill = () => {
             layout="intrinsic"
             width={v.width}
             height={v.height}
+            priority
           />
         </li>
       ))}

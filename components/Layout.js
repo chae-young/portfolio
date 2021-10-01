@@ -6,9 +6,6 @@ import Header from "./Header"
 import Footer from "./Footer"
 
 const Layout = ({ children }) => {
-  const contentReft = useRef(null)
-  const [style, setStyle] = useState(null)
-
   return (
     <>
       <Header />

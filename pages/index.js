@@ -28,7 +28,7 @@ const Main = () => {
               <Typing />
             </Mydesc>
             <MyEtc load={load}>
-              <li>phone.&nbsp;01095288527</li>
+              <li>phone.&nbsp;010-9528-8527</li>
               <li>email.&nbsp;leechaeng2222@gmail.com</li>
             </MyEtc>
           </MyInfo>
@@ -64,7 +64,7 @@ const MainText = styled.h2`
   }
 `
 const MyInfo = styled.div`
-  margin-top: 4rem;
+  margin-top: 8rem;
   font-size: 1.8rem;
   ${({ theme }) => theme.device.desktop} {
     display: flex;

@@ -13,7 +13,9 @@ const SubSection = ({ children, title }) => {
 }
 const Section = styled.section`
   padding-bottom: 8rem;
-
+  ${({ theme }) => theme.device.mobileL} {
+    padding: 6rem 2rem;
+  }
   & h3 {
     margin-bottom: 2rem;
     font-size: 2rem;
