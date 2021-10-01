@@ -1,5 +1,4 @@
 import React from "react"
-import Image from "next/image"
 
 import styled from "styled-components"
 
@@ -51,14 +50,7 @@ const Skill = () => {
     <SkillList>
       {ImageArr.map((v, i) => (
         <li>
-          <Image
-            key={i}
-            src={v.src}
-            layout="intrinsic"
-            width={v.width}
-            height={v.height}
-            priority
-          />
+          <img key={i} src={v.src} width="100%" />
         </li>
       ))}
     </SkillList>

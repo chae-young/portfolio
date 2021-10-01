@@ -1,5 +1,4 @@
 import React from "react"
-import Image from "next/image"
 
 import styled, { keyframes } from "styled-components"
 import hand from "../public/images/waving-hand.png"
@@ -7,7 +6,7 @@ import hand from "../public/images/waving-hand.png"
 const HandShaking = () => {
   return (
     <Hand>
-      <Image src={hand} width={512} height={512} />
+      <img src={hand} width="100%" />
     </Hand>
   )
 }
