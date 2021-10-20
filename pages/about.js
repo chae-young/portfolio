@@ -14,8 +14,8 @@ const ProjectArr = [
     content:
       "메인페이지에 적용되는 인터랙티브효과를 관리자에서 스타일별로 적용 할 수 있도록 개발하는 과정에서 css animation, HTML구조, class 네이밍 설계를 담당하였습니다.",
     detail: `- 인터랙티브가 적용될 slider, 배너 HTML 구조 설계
-- CSS BEM 방식으로 클래스 네이밍,
-- 메인페이지 전체 animation 적용, 
+- CSS BEM 방식으로 클래스 네이밍
+- 메인페이지 전체 animation 적용
 - animation 스타일별로(클래스 별로 다르게) 구현`,
     link: "https://www.fila.co.kr/main/main.asp",
   },

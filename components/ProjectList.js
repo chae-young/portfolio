@@ -54,7 +54,7 @@ const projectsArr = [
       front: "javascript",
       deployment: "github",
     },
-    desc: "객체과 setInterval을 활용하였으며 기존 가위바위보게임 에서 스코어 기능까지 구현한 토이프로젝트 입니다. ",
+    desc: "배열에 이미지값을 넣어 setInterval을 활용하여 만든 가위바위보 게임입니다. 기존 가위바위보게임 에서 스코어 값을 변수에 저장하여 스코어 기능까지 구현였습니다. ",
     link: {
       view: "https://chae-young.github.io/js_project/project/Rock_Paper_Scissors/",
       git: "https://github.com/chae-young/js_project/tree/master/project/Rock_Paper_Scissors",
@@ -82,7 +82,7 @@ const projectsArr = [
       front: "javascript",
       deployment: "github",
     },
-    desc: "flag 변수의 활용을 배우고 flag를 사용하여 카드의 플레이를 구현해본 토이프로젝트 입니다.",
+    desc: "for문으로 카드를 여러개 만들고 이미지를 랜덤으로 섞어 나열한 카드 짝맞추기 입니다. setTimeout으로 시간차를 주고 조건문을 활용하여 카드가 똑같지 않으면 뒤집히도록 구현하였습니다 ",
     link: {
       view: "https://chae-young.github.io/js_project/project/card/cardplay.html",
       git: "https://github.com/chae-young/js_project/tree/master/project/card",
@@ -214,10 +214,13 @@ const ProjectImg = styled.div`
   }
 `
 const ProjectDesc = styled.div`
+  white-space: pre-wrap;
+
   & p {
     margin-bottom: 2rem;
     word-break: keep-all;
     font-size: 2rem;
+    font-family: Noto Sans KR;
     ${({ theme }) => theme.device.mobileL} {
       font-size: 1.4rem;
     }
