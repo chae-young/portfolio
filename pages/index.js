@@ -5,6 +5,7 @@ import Layout from "../components/Layout"
 import HandShaking from "../components/HandShaking"
 import ProjectList from "../components/ProjectList"
 import Typing from "../components/Typing"
+import Profile from "../components/Profile"
 
 const Main = () => {
   const [load, setLoad] = useState(false)
@@ -27,12 +28,10 @@ const Main = () => {
               <HandShaking />
               <Typing />
             </Mydesc>
-            <MyEtc load={load}>
-              <li>phone.&nbsp;010-9528-8527</li>
-              <li>email.&nbsp;leechaeng2222@gmail.com</li>
-            </MyEtc>
+            <MyEtc load={load}>lee chaeyoung Portfolio</MyEtc>
           </MyInfo>
         </MainSection>
+        <Profile />
         <ProjectList />
       </Layout>
     </>
@@ -47,11 +46,11 @@ const OpaciryAnimation = css`
 const MainSection = styled.section`
   padding: 6rem 6rem 4rem;
   height: 100vh;
-  margin-bottom: 20rem;
   box-sizing: border-box;
   ${({ theme }) => theme.device.tabletL} {
     padding: 2rem;
-    height: auto;
+    position: relative;
+    height: 70vh;
   }
 `
 const MainText = styled.h2`
@@ -64,10 +63,10 @@ const MainText = styled.h2`
   }
 `
 const MyInfo = styled.div`
-  margin-top: 8rem;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   ${({ theme }) => theme.device.desktop} {
     display: flex;
+    font-size: 2rem;
   }
 `
 const Mydesc = styled.div`
@@ -75,11 +74,17 @@ const Mydesc = styled.div`
   ${OpaciryAnimation}
   transition-delay:.5s;
 `
-const MyEtc = styled.ul`
-  flex: 3;
+const MyEtc = styled.div`
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  font-size: 2rem;
+  font-family: "Noto Sans KR";
   ${OpaciryAnimation}
   transition-delay:.7s;
-  ${({ theme }) => theme.device.mobileL} {
+  ${({ theme }) => theme.device.tabletL} {
+    bottom: 20px;
+    right: 20px;
     font-size: 1.3rem;
   }
 `

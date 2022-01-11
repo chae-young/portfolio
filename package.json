@@ -17,6 +17,7 @@
     "next-images": "^1.8.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-scroll-parallax": "^2.4.3",
     "react-typed": "^1.2.0",
     "styled-components": "^4.4.1",
     "styled-reset": "^4.3.4"

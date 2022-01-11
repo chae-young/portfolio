@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Head from "next/head"
+import { ParallaxProvider } from "react-scroll-parallax"
 
 import { ThemeProvider } from "styled-components"
 import GlobalStyle from "../styles/GlobalStyle"
@@ -15,8 +16,10 @@ const App = ({ Component }) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Component />
+        <ParallaxProvider>
+          <GlobalStyle />
+          <Component />
+        </ParallaxProvider>
       </ThemeProvider>
     </>
   )

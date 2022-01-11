@@ -40,9 +40,9 @@ export const LinkList = () => {
   )
 }
 const FooterWrap = styled.footer`
-  padding: 12rem 6rem;
+  padding: 8rem 6rem;
   ${({ theme }) => theme.device.mobileL} {
-    padding: 10rem 2rem;
+    padding: 5rem 2rem;
   }
   color: ${({ theme }) => theme.colors.white};
   background: ${({ theme }) => theme.colors.black};

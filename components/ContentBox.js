@@ -5,13 +5,7 @@ import styled from "styled-components"
 
 const ContentBox = ({ children, title }) => {
   return (
-    <Content
-      style={
-        title === "About"
-          ? { background: "rgb(255 247 222)" }
-          : { background: "rgb(255,255,255)" }
-      }
-    >
+    <Content>
       <Title>{title}</Title>
       {children}
     </Content>
@@ -23,10 +17,7 @@ const Title = ({ children }) => {
 }
 
 const Content = styled.section`
-  padding: 12rem 0rem 6rem;
-  ${({ theme }) => theme.device.tabletL} {
-    padding: 10rem 0 0;
-  }
+  padding: 12rem 0rem;
 `
 const TitleStyle = styled.h2`
   padding: 0 6rem;
