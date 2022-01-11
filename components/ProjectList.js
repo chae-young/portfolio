@@ -3,8 +3,6 @@ import Link from "next/link"
 import { Parallax } from "react-scroll-parallax"
 
 import styled from "styled-components"
-import useWidth from "../hooks/useWidth"
-import IntroCopy from "./IntroCopy"
 
 const imgArr = [
   {
