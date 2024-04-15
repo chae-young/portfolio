@@ -3,6 +3,7 @@ const deviceSizes = {
   tablet: "767px",
   tabletL: "1024px",
   desktop: "1200px",
+  maxSize: "1400px",
 }
 
 const device = {
@@ -13,6 +14,11 @@ const device = {
   onlyTablet: `@media screen and (min-width: ${deviceSizes.tablet}) and (max-width: ${deviceSizes.desktop})`,
   desktop: `@media screen and (min-width: ${deviceSizes.desktop})`,
 }
+
+const fonts = {
+  subEng: `'Playfair Display', serif`,
+}
+
 const colors = {
   black: "rgb(0,0,0)",
   white: "rgb(255,255,255)",
@@ -22,6 +28,7 @@ const colors = {
 }
 const theme = {
   colors,
+  fonts,
   deviceSizes,
   device,
 }

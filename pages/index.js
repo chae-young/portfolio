@@ -1,91 +1,52 @@
-import React, { useEffect, useState } from "react"
-
-import styled, { css } from "styled-components"
+import React from "react"
+import styled from "styled-components"
 import Layout from "../components/Layout"
-import HandShaking from "../components/HandShaking"
-import ProjectList from "../components/ProjectList"
-import Typing from "../components/Typing"
+import Slider from "../components/Slider"
 import Profile from "../components/Profile"
+import Intro from "../components/Intro"
+import ProjectArea from "../components/ProjecArea"
+import Contact from "../components/Contact"
 
 const Main = () => {
-  const [load, setLoad] = useState(false)
-  useEffect(() => {
-    const actionTimer = setTimeout(() => {
-      setLoad(true)
-    }, 500)
-    return () => {
-      clearTimeout(actionTimer)
-    }
-  }, [])
   return (
     <>
       <Layout>
         <MainSection>
-          <MainText load={load}>welcome!</MainText>
-          <MyInfo>
-            <Mydesc load={load}>
-              안녕하세요.
-              <HandShaking />
-              <Typing />
-            </Mydesc>
-            <MyEtc load={load}>lee chaeyoung Portfolio</MyEtc>
-          </MyInfo>
+          <Intro />
         </MainSection>
         <Profile />
-        <ProjectList />
+        {/* 인피니트 배너 영역 */}
+        <Slider
+          slideArr={[
+            "Work Experience",
+            "Work Experience",
+            "Work Experience",
+            "Work Experience",
+          ]}
+        />
+        {/* // 인피니트 배너 영역 */}
+        <ProjectArea />
+        <Contact />
       </Layout>
     </>
   )
 }
 
-const OpaciryAnimation = css`
-  transform: ${(props) => (props.load ? "translateY(0)" : "translateY(100px)")};
-  opacity: ${(props) => (props.load ? 1 : 0)};
-  transition: opacity 0.5s ease, transform 1s ease;
-`
 const MainSection = styled.section`
-  padding: 6rem 6rem 4rem;
-  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10rem 2rem;
+  position: relative;
+  height: 70vh;
   box-sizing: border-box;
-  ${({ theme }) => theme.device.tabletL} {
-    padding: 2rem;
-    position: relative;
-    height: 70vh;
-  }
-`
-const MainText = styled.h2`
-  padding-top: 12rem;
-  font-size: 13vw;
-  font-weight: 700;
-  ${OpaciryAnimation}
-  ${({ theme }) => theme.device.mobileL} {
-    font-size: 6.5rem;
-  }
-`
-const MyInfo = styled.div`
-  font-size: 1.4rem;
   ${({ theme }) => theme.device.desktop} {
-    display: flex;
-    font-size: 2rem;
+    max-width: ${({ theme }) => theme.deviceSizes.maxSize};
+    margin: auto;
+    height: 100vh;
+    align-items: stretch;
   }
 `
-const Mydesc = styled.div`
-  flex: 7;
-  ${OpaciryAnimation}
-  transition-delay:.5s;
-`
-const MyEtc = styled.div`
-  position: absolute;
-  right: 40px;
-  bottom: 40px;
-  font-size: 2rem;
-  font-family: "Noto Sans KR";
-  ${OpaciryAnimation}
-  transition-delay:.7s;
-  ${({ theme }) => theme.device.tabletL} {
-    bottom: 20px;
-    right: 20px;
-    font-size: 1.3rem;
-  }
-`
+
 export default Main

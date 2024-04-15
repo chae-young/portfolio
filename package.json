@@ -12,15 +12,14 @@
   "author": "chaeyoung",
   "license": "ISC",
   "dependencies": {
-    "next": "^10.2.3",
+    "framer-motion": "^11.0.28",
+    "next": "^12.3.4",
     "next-compose-plugins": "^2.2.1",
     "next-images": "^1.8.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-scroll-parallax": "^2.4.3",
-    "react-typed": "^1.2.0",
-    "styled-components": "^4.4.1",
-    "styled-reset": "^4.3.4"
+    "react": "^18.2.0",
+    "react-dom": "18.0.0",
+    "styled-components": "^6.1.8",
+    "styled-reset": "^4.5.2"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.15.4",

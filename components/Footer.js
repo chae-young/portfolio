@@ -1,3 +1,4 @@
+import Link from "next/link"
 import React from "react"
 
 import styled from "styled-components"
@@ -5,12 +6,8 @@ import styled from "styled-components"
 const Footer = () => {
   return (
     <FooterWrap>
-      <p>@lee chaeyoung</p>
-      <MailLink>
-        <a href="mailto:leechaeng2222@gmail.com">leechaeng2222@gmail.com</a>
-      </MailLink>
       <LinkList />
-      <Copy>© 2021. All Rights Reserved.</Copy>
+      <Copy>(c)2024 Made by leechaeng</Copy>
     </FooterWrap>
   )
 }
@@ -19,33 +16,29 @@ export const LinkList = () => {
   return (
     <LinkLisBox>
       <li>
-        <a
-          href="https://chaeyoung2.tistory.com/"
-          target="_blanck"
-          rel="noreferrer noopener"
-        >
-          Blog
-        </a>
+        <Link href="mailto:cycy8527@gmail.com" rel="noreferrer noopener">
+          Mail
+        </Link>
       </li>
       <li>
-        <a
-          href=" https://github.com/chae-young"
-          target="_blanck"
-          rel="noreferrer noopener"
-        >
+        <Link href="https://chaeyoung2.tistory.com/" rel="noreferrer noopener">
+          Blog
+        </Link>
+      </li>
+      <li>
+        <Link href=" https://github.com/chae-young" rel="noreferrer noopener">
           Github
-        </a>
+        </Link>
       </li>
     </LinkLisBox>
   )
 }
 const FooterWrap = styled.footer`
-  padding: 8rem 6rem;
-  ${({ theme }) => theme.device.mobileL} {
-    padding: 5rem 2rem;
-  }
+  text-align: center;
+  padding: 6rem 0;
   color: ${({ theme }) => theme.colors.white};
   background: ${({ theme }) => theme.colors.black};
+
   > p {
     font-size: 6rem;
     ${({ theme }) => theme.device.mobileL} {
@@ -55,27 +48,22 @@ const FooterWrap = styled.footer`
 `
 const LinkLisBox = styled.ul`
   display: flex;
-  margin-top: 2rem;
-  > li {
-    + li {
-      margin-left: 1rem;
-    }
-    a {
-      font-size: 1.4rem;
-      color: ${({ theme }) => theme.colors.gray};
-    }
-  }
-`
-const MailLink = styled.div`
-  > a {
-    display: block;
-    margin-top: 4rem;
-    color: ${({ theme }) => theme.colors.gray};
+  flex-direction: column;
+  row-gap: 5px;
+
+  a {
+    color: ${({ theme }) => theme.colors.white};
     font-size: 1.4rem;
+  }
+
+  ${({ theme }) => theme.device.desktop} {
+    flex-direction: row;
+    column-gap: 10px;
+    justify-content: center;
   }
 `
 const Copy = styled.div`
-  margin-top: 10rem;
-  color: ${({ theme }) => theme.colors.gray};
+  margin-top: 3rem;
+  /* color: ${({ theme }) => theme.colors.gray}; */
 `
 export default Footer

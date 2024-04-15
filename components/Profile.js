@@ -1,131 +1,64 @@
 import React from "react"
-
 import styled from "styled-components"
-import HandShaking from "./HandShaking"
-
-const ProfileObj = {
-  name: "이채영",
-  birthday: "1995-02-23",
-  phone: "010-9528-8527",
-  school: "백제예술대학 연예매니지먼트 졸업",
-  education: "2017.02 ~ 07 한국직업전문학교 웹표준 퍼블리싱 실무자 양성 수료",
-}
+import MoreBtn from "./MoreBtn"
 
 const Profile = () => {
   return (
-    <ProfileBox>
-      <MyImg>
-        <div>
-          <img src="/images/about/me.jpg" width="100%" />
-        </div>
-      </MyImg>
-      <MyInfo>
-        <h2>
-          <b> 더 나은 UI/UX를 향해 끊임없이 고민하는</b> <br />
-          웹퍼블리셔 이채영 입니다.
-        </h2>
-        <p>
-          웹 표준을 준수하여 시맨틱한 마크업을 하고, 다양한 디바이스에서
-          반응하도록 UI를 설계합니다. 사용자들이 좋은 경험을 할 수 있도록
-          UI/UX를 고민하며 유지보수에 최적화된 스타일을 모듈화 하는 것에 관심이
-          많습니다. <br />
-          <br />
-          항상 새로운 시도를 하려고 합니다. <br />
-          트렌드 기술을 어떠한 방법으로 활용하여 어떻게 화면에 녹여낼지
-          고민합니다. (현재 포트폴리오도 react에 styled component를
-          활용하였어요🙂)
-          <br />
-          <br />
-          자부심을 가지고 다양하고 효율성 있는 UI를 계속 구현하고 싶습니다.
-          목표를 가진만큼 사용자들에게 더 다가가기 위해 계속 고민하고 배우며
-          발전하고 있습니다.
-        </p>
-      </MyInfo>
-    </ProfileBox>
+    <article>
+      <ProfileWrap>
+        <ProfileImg>
+          <img src="/images/about/me2.jpg" width="100%" alt="이채영" />
+        </ProfileImg>
+        <ProfileInfo>
+          <h2>
+            안녕하세요! <br />
+            UI/UX를 설계하는 퍼블리셔 이채영입니다 😊
+          </h2>
+          <p>
+            퍼블리싱이 능숙하고 웹 에이전시와 이커머스 플랫폼에 근무하며 다양한
+            UI 경험을 쌓아 왔습니다. 웹 표준을 고려한 반응형 웹/적응형 웹
+            마크업하고 스타일링해요. <br />
+            프론트엔드 기술에도 관심이 많아 다양한 환경에서도 UI 개발 하는 것이
+            가능합니다! <br />
+            <br />
+            사용자에게 일관된 UI를 그려내고 기억에 남는 UX를 제공하는 것이
+            목표입니다.
+          </p>
+
+          <MoreBtn href="/" />
+        </ProfileInfo>
+      </ProfileWrap>
+    </article>
   )
 }
-const ProfileBox = styled.div`
-  padding: 20rem 8rem;
-  background: rgb(0, 0, 0);
 
-  ${({ theme }) => theme.device.tabletWidthDesktop} {
-    display: flex;
-    align-items: flex-start;
-  }
-  ${({ theme }) => theme.device.tabletL} {
-    padding: 6rem 2rem;
-  }
-  > div {
-    flex: 1;
-  }
-`
-const MyImg = styled.div`
-  display: flex;
-
+const ProfileWrap = styled.div`
+  margin: 0 auto 5em;
   ${({ theme }) => theme.device.desktop} {
-    > div {
-      width: 70%;
-      margin: auto;
-    }
-  }
-  ${({ theme }) => theme.device.tabletL} {
-    padding-right: 10px;
+    display: grid;
+    grid-template: auto / 40% 60%;
+    gap: 20px;
+    padding: 0 6rem;
+    max-width: ${({ theme }) => theme.deviceSizes.maxSize};
   }
 `
-const MyInfo = styled.div`
-  padding-left: 2rem;
+const ProfileImg = styled.div``
+const ProfileInfo = styled.section`
+  padding: 0 2rem;
+  margin-top: 2em;
   font-size: 1.4rem;
-  color: rgb(255, 255, 255);
 
-  > h2 {
-    margin-bottom: 8rem;
-    font-size: 3.6rem;
-    & b {
-      font-weight: 700;
-      &:before {
-        content: "";
-        display: bloack;
-      }
-    }
+  > p {
+    margin-top: 2em;
+    line-height: 26px;
   }
-  p {
-    word-break: break-all;
-    line-height: 3.6rem;
-    font-size: 2rem;
-  }
-  > dl {
-    display: flex;
-    line-height: 2.4;
-    dt {
-      flex-shrink: 0;
-      font-weight: 700;
-      width: 70px;
-    }
-  }
-
   ${({ theme }) => theme.device.desktop} {
-    p {
-      width: 70%;
-    }
-  }
-  ${({ theme }) => theme.device.tabletL} {
-    p {
-      font-size: 1.4rem;
-      line-height: 2.6rem;
-    }
-  }
-  ${({ theme }) => theme.device.mobileL} {
-    padding: 0;
-    margin: 2rem 0 0;
-
-    > h2 {
-      position: relative;
-      top: -52px;
-      padding: 0 2rem;
-      margin-bottom: 0rem;
-      font-size: 2.8rem;
-      word-break: keep-all;
+    font-size: 2rem;
+    margin: 0;
+    > p {
+      line-height: 40px;
     }
   }
 `
+
 export default Profile

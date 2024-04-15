@@ -9,7 +9,7 @@ ${reset};
 
         padding: 0;
         margin: 0;
-        font-family:-apple-system, 'Source Code Pro', "Noto Sans KR", BlinkMacSystemFont,  Roboto, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";   
+        font-family:-apple-system, "Manrope", "Noto Sans KR","Playfair Display", BlinkMacSystemFont,  Roboto, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";   
         font-size:10px;
     };
     body{
