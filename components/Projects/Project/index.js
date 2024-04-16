@@ -1,9 +1,9 @@
-import React, { useRef } from "react"
+import React from "react"
 import styled from "styled-components"
 import { motion } from "framer-motion"
 import Image from "next/image"
 
-const Project = ({ src, name, desc }) => {
+const Project = ({ src, name, desc, tags }) => {
   return (
     <ProjectFigure
       initial={{ opacity: 0, y: 50 }}
@@ -23,6 +23,11 @@ const Project = ({ src, name, desc }) => {
       <ProjectFigcaption>
         <strong>{name}</strong>
         <p>{desc}</p>
+        <ProjectTags>
+          {tags.map((tag, index) => (
+            <li index={index}>#{tag}</li>
+          ))}
+        </ProjectTags>
       </ProjectFigcaption>
     </ProjectFigure>
   )
@@ -40,6 +45,9 @@ const ProjectFigure = styled(motion.figure)`
 
       > figcaption {
         text-align: right;
+      }
+      figcaption ul {
+        justify-content: flex-end;
       }
     }
   }
@@ -78,6 +86,14 @@ const ProjectFigcaption = styled.figcaption`
       font-size: 8rem;
       font-weight: 900;
     }
+  }
+`
+
+const ProjectTags = styled.ul`
+  display: flex;
+  > li {
+    font-size: 1.2rem;
+    color: ${({ theme }) => theme.colors.gray};
   }
 `
 

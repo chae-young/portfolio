@@ -7,25 +7,25 @@ const Brands = [
     name: "Wconcept",
     img: "/images/project/wc.png",
     desc: "프로모션/모션 구축",
-    tag: ["CSS, Scroll Interaction, UI/UX"],
+    tags: ["CSS", "Scroll Interaction", "UI/UX"],
   },
   {
     name: "FILA",
     img: "/images/project/fila.jpg",
     desc: "사이트 구축/프로모션/유지보수",
-    tag: ["HTML5,CSS,Interaction"],
+    tags: ["HTML5", "CSS", "Interaction"],
   },
   {
     name: "Columbia",
     img: "/images/project/columbia.webp",
     desc: "사이트 구축/프로모션/유지보수",
-    tag: ["HTML5,CSS,Interaction"],
+    tags: ["HTML5", "CSS", "Interaction"],
   },
   {
     name: "Leica",
     img: "/images/project/leica.jpg",
     desc: "사이트 구축/프로모션/유지보수",
-    tag: ["HTML5,CSS,Interaction"],
+    tags: ["HTML5", "CSS", "Interaction"],
   },
 ]
 
@@ -38,6 +38,7 @@ const ProjectList = () => {
           src={brand.img}
           name={brand.name}
           desc={brand.desc}
+          tags={brand.tags}
         />
       ))}
     </ProjectListWrap>
