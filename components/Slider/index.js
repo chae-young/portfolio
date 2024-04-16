@@ -51,7 +51,7 @@ const Slide = styled.div`
 
   ${({ theme }) => theme.device.desktop} {
     > div {
-      font-size: 14rem;
+      font-size: 8.5vw;
     }
   }
 `
