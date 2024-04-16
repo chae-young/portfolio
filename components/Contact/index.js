@@ -1,4 +1,5 @@
 import React from "react"
+import { motion } from "framer-motion"
 import Image from "next/image"
 import styled, { css } from "styled-components"
 import Link from "next/link"
@@ -10,12 +11,22 @@ const Contact = () => {
     <ContactWrap>
       <WavyText text="Contact Me!" ftSize={20} mFtSize={6} />
       <ContactInfo>
-        <p>
+        <motion.p
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, type: "spring", delay: 0.2 }}
+          viewport={{ once: true, amount: 0 }}
+        >
           저에게 궁금한것이 있으신가요? <br />
           어떤 주제든 상관 없어요. 언제든지 편하게 메일로 연락주세요!{`>-<`}
-        </p>
+        </motion.p>
         <Link href="mailto:cycy8527@gmail.com">
-          <IconWrap>
+          <IconWrap
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, type: "spring", delay: 0.5 }}
+            viewport={{ once: true, amount: 0 }}
+          >
             <FloatingBox size={Icon}>
               <Image
                 src="/images/icon-letter2.png"
@@ -62,7 +73,7 @@ const ContactInfo = styled.div`
     }
   }
 `
-const IconWrap = styled.div`
+const IconWrap = styled(motion.div)`
   display: flex;
   cursor: pointer;
   justify-content: center;

@@ -1,15 +1,26 @@
 import React from "react"
 import styled from "styled-components"
+import { motion } from "framer-motion"
 import MoreBtn from "./MoreBtn"
 
 const Profile = () => {
   return (
     <article>
       <ProfileWrap>
-        <ProfileImg>
+        <ProfileImg
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          viewport={{ once: true, amount: 0.5 }}
+        >
           <img src="/images/about/me2.jpg" width="100%" alt="이채영" />
         </ProfileImg>
-        <ProfileInfo>
+        <ProfileInfo
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, type: "spring", delay: 0.3 }}
+          viewport={{ once: true, amount: 0.5 }}
+        >
           <h2>
             안녕하세요! <br />
             UI/UX를 설계하는 퍼블리셔 이채영입니다 😊
@@ -42,8 +53,8 @@ const ProfileWrap = styled.div`
     max-width: ${({ theme }) => theme.deviceSizes.maxSize};
   }
 `
-const ProfileImg = styled.div``
-const ProfileInfo = styled.section`
+const ProfileImg = styled(motion.div)``
+const ProfileInfo = styled(motion.section)`
   padding: 0 2rem;
   margin-top: 2em;
   font-size: 1.4rem;
