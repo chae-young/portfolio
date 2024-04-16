@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { motion } from "framer-motion"
-import styled, { css } from "styled-components"
+import styled from "styled-components"
+import FloatingBox from "../FloatingBox"
 
 const Intro = () => {
-  const [load, setLoad] = useState(false)
-
   return (
     <>
       <MainText
@@ -31,7 +30,11 @@ const Intro = () => {
           UI/UX를 설계하는 퍼블리셔 이채영입니다 <br />
           다양한 환경에서 UI를 개발하고 설계하는것을 좋아해요. <br />
         </p>
-        <Heart>💛</Heart>
+        <FloatingBox>
+          <Heart>
+            <img src="./images/icon-heart.png" alt="하트" />
+          </Heart>
+        </FloatingBox>
       </MainDesc>
     </>
   )
@@ -72,7 +75,20 @@ const MainDesc = styled(motion.div)`
 `
 
 const Heart = styled.div`
-  font-size: 5rem;
+  margin: 2em auto 0;
+  width: 60px;
+  height: 60px;
+
+  > img {
+    object-fit: cover;
+    width: 100%;
+  }
+
+  ${({ theme }) => theme.device.desktop} {
+    width: 100px;
+    height: 100px;
+    margin: 2em 0 0;
+  }
 `
 
 export default Intro
