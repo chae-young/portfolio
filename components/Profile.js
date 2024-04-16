@@ -25,7 +25,7 @@ const Profile = () => {
             목표입니다.
           </p>
 
-          <MoreBtn href="/" />
+          <MoreBtn href="/" text="더 보기" />
         </ProfileInfo>
       </ProfileWrap>
     </article>

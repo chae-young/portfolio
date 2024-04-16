@@ -2,10 +2,10 @@ import React from "react"
 import Link from "next/link"
 import styled from "styled-components"
 
-const MoreBtn = ({ href }) => {
+const MoreBtn = ({ href, text }) => {
   return (
     <MoreBtnWrap>
-      <Link href={href}>더 보기</Link>
+      <Link href={href}>{text}</Link>
     </MoreBtnWrap>
   )
 }
@@ -13,7 +13,7 @@ const MoreBtnWrap = styled.div`
   position: relative;
   margin-top: 4em;
   display: inline-block;
-  padding: 0.5em 1em;
+  padding: 1rem 2rem;
   border-radius: 20px;
   /* border: 1px solid #000; */
   background-color: #6c6c6c;
@@ -39,6 +39,13 @@ const MoreBtnWrap = styled.div`
     position: relative;
     z-index: 2;
     color: #fff;
+    font-size: 1.4rem;
+  }
+
+  ${({ theme }) => theme.device.desktop} {
+    > a {
+      font-size: 2rem;
+    }
   }
 `
 export default MoreBtn
