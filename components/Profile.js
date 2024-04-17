@@ -36,7 +36,10 @@ const Profile = () => {
             UI를 그려내고 기억에 남는 UX를 제공하는 것이 목표입니다.
           </p>
 
-          <MoreBtn href="/" text="더 보기" />
+          <MoreBtn
+            href="https://fixed-rubidium-143.notion.site/UI-UI-UX-Publisher-7e3eedf08cbf4539ba2922f45079e937?pvs=4"
+            text="더 보기"
+          />
         </ProfileInfo>
       </ProfileWrap>
     </article>

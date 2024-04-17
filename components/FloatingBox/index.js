@@ -1,11 +1,12 @@
 import React from "react"
 import { motion } from "framer-motion"
 import styled from "styled-components"
+import PropTypes from "prop-types"
 
 const FloatingBox = ({ children, size }) => {
   return (
     <FloatingBoxWrap
-      size={size}
+      $size={size}
       animate={{
         y: [-10, 10],
         rotate: 0,
@@ -21,9 +22,17 @@ const FloatingBox = ({ children, size }) => {
   )
 }
 
+FloatingBox.propTypes = {
+  children: PropTypes.node.isRequired,
+  size: PropTypes.array,
+}
+
 const FloatingBoxWrap = styled(motion.div)`
   position: relative;
-  ${(props) => props.size}
+  ${(props) => props.$size}
 `
+FloatingBox.defaultProps = {
+  size: [],
+}
 
 export default FloatingBox

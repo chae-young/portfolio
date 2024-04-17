@@ -5,9 +5,11 @@ import styled, { css } from "styled-components"
 
 const Header = () => {
   const [navActive, setNavAtive] = useState(false)
+
   const onClickNav = () => {
     setNavAtive((prev) => !prev)
   }
+
   return (
     <HeaderWrap>
       <Logo>
@@ -17,17 +19,16 @@ const Header = () => {
           </a>
         </Link>
       </Logo>
-      <Hamburger onClick={onClickNav} active={navActive}>
+      <Hamburger onClick={onClickNav} $active={navActive}>
         <span />
       </Hamburger>
-      <Nav active={navActive}>
+      <Nav $active={navActive}>
         <ul>
-          <li />
-          <li>
-            <Link href="/projects">Projects</Link>
-          </li>
           <li>
             <Link href="/about">About</Link>
+          </li>
+          <li>
+            <Link href="/projects">Work</Link>
           </li>
           <li>
             <a href="mailto:leechaeng2222@gmail.com">Contact</a>
@@ -74,22 +75,22 @@ const Hamburger = styled.button`
     display: block;
     top: 50%;
     margin-top: -2px;
-    transform: ${(props) => (props.active ? "rotate(45deg)" : "rotate(0deg)")};
+    transform: ${(props) => (props.$active ? "rotate(45deg)" : "rotate(0deg)")};
     ${HamburgerElement}
     &:before,
     &:after {
       content: "";
       display: block;
       ${HamburgerElement}
-      opacity: ${(props) => (props.active ? 0 : 1)};
+      opacity: ${(props) => (props.$active ? 0 : 1)};
     }
     &:before {
       top: -8px;
     }
     &:after {
-      bottom: ${(props) => (props.active ? 0 : "-8px")};
+      bottom: ${(props) => (props.$active ? 0 : "-8px")};
       transform: ${(props) =>
-        props.active ? "rotate(90deg)" : "rotate(0deg)"};
+        props.$active ? "rotate(90deg)" : "rotate(0deg)"};
       opacity: 1;
     }
   }
@@ -98,7 +99,7 @@ const Nav = styled.nav`
   position: absolute;
   right: 4rem;
   top: 64px;
-  display: ${(props) => (props.active ? "block" : "none")};
+  display: ${(props) => (props.$active ? "block" : "none")};
   padding: 2rem;
   background: ${({ theme }) => theme.colors.black};
   ${({ theme }) => theme.device.tabletL} {

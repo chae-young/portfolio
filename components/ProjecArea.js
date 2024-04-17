@@ -8,7 +8,10 @@ const ProjectArea = () => {
   return (
     <ProjectWrap>
       <ProjectList />
-      <MoreBtn href="/" text="주요 프로젝트 더 보기" />
+      <MoreBtn
+        href="https://fixed-rubidium-143.notion.site/50cd5ae595cf4cd1acde55014d02e661?pvs=4"
+        text="주요 프로젝트 더 보기"
+      />
     </ProjectWrap>
   )
 }

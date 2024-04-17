@@ -17,16 +17,20 @@ const Title = ({ children }) => {
 }
 
 const Content = styled.section`
-  padding: 12rem 0rem;
+  padding: 12rem 0 5rem;
+
+  ${({ theme }) => theme.device.desktop} {
+    padding: 12rem 0;
+  }
 `
 const TitleStyle = styled.h2`
-  padding: 0 6rem;
-  margin-bottom: 15rem;
-  font-size: 8rem;
-  ${({ theme }) => theme.device.tabletL} {
-    padding: 0 2rem;
-    margin-bottom: 10rem;
-    font-size: 4rem;
+  font-size: 3.4rem;
+  font-weight: 900;
+  max-width: ${({ theme }) => theme.deviceSizes.maxSize};
+  margin: 0 auto 1em;
+  padding: 0 2rem;
+  ${({ theme }) => theme.device.desktop} {
+    font-size: 10rem;
   }
 `
 ContentBox.propTypes = {

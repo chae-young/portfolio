@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { motion } from "framer-motion"
 import Image from "next/image"
+import PropTypes from "prop-types"
 
 const Project = ({ src, name, desc, tags }) => {
   return (
@@ -24,8 +25,8 @@ const Project = ({ src, name, desc, tags }) => {
         <strong>{name}</strong>
         <p>{desc}</p>
         <ProjectTags>
-          {tags.map((tag, index) => (
-            <li index={index}>#{tag}</li>
+          {tags.map((tag, i) => (
+            <li key={i}>#{tag}</li>
           ))}
         </ProjectTags>
       </ProjectFigcaption>
@@ -91,10 +92,21 @@ const ProjectFigcaption = styled.figcaption`
 
 const ProjectTags = styled.ul`
   display: flex;
+  justify-content: center;
   > li {
     font-size: 1.2rem;
     color: ${({ theme }) => theme.colors.gray};
   }
+
+  ${({ theme }) => theme.device.desktop} {
+    justify-content: flex-start;
+  }
 `
+Project.propTypes = {
+  src: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
+  tags: PropTypes.array.isRequired,
+}
 
 export default Project

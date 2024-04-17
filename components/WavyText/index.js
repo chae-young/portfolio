@@ -1,6 +1,7 @@
 import React from "react"
 import { motion } from "framer-motion"
 import styled from "styled-components"
+import PropTypes from "prop-types"
 
 const WavyText = ({ text, ftSize, mFtSize }) => {
   const letters = Array.from(text)
@@ -64,5 +65,11 @@ const Title = styled(motion.h2)`
     font-size: ${(props) => props.$ftSize}rem;
   }
 `
+
+WavyText.propTypes = {
+  mFtSize: PropTypes.number.isRequired,
+  ftSize: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+}
 
 export default WavyText

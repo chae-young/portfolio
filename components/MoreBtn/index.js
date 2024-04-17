@@ -1,11 +1,16 @@
 import React from "react"
 import Link from "next/link"
 import styled from "styled-components"
+import PropTypes from "prop-types"
 
 const MoreBtn = ({ href, text }) => {
   return (
     <MoreBtnWrap>
-      <Link href={href}>{text}</Link>
+      <Link href={href}>
+        <a rel="noopener noreferrer" target="_blank">
+          {text}
+        </a>
+      </Link>
     </MoreBtnWrap>
   )
 }
@@ -48,4 +53,9 @@ const MoreBtnWrap = styled.div`
     }
   }
 `
+MoreBtn.propTypes = {
+  href: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+}
+
 export default MoreBtn

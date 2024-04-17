@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import { motion } from "framer-motion"
 import PropTypes from "prop-types"
@@ -15,7 +15,7 @@ const Slider = ({ slideArr }) => {
         transition={{ ease: "linear", duration: 15, repeat: Infinity }}
       >
         {duplicatedSlides.map((slide, index) => (
-          <Slide key={index} slideLeng={slideArr.length}>
+          <Slide key={index} $slideLeng={slideArr.length}>
             <div>{slide}</div>
           </Slide>
         ))}
@@ -37,7 +37,7 @@ const SliderBox = styled(motion.div)`
 
 const Slide = styled.div`
   flex-shrink: 0;
-  width: ${(props) => 300 / props.slideLeng}vw;
+  width: ${(props) => 300 / props.$slideLeng}vw;
 
   > div {
     display: flex;

@@ -6,6 +6,15 @@ import Link from "next/link"
 import WavyText from "../WavyText"
 import FloatingBox from "../FloatingBox"
 
+const Icon = css`
+  width: 7rem;
+  height: 7rem;
+  ${({ theme }) => theme.device.desktop} {
+    width: 20rem;
+    height: 20rem;
+  }
+`
+
 const Contact = () => {
   return (
     <ContactWrap>
@@ -47,14 +56,6 @@ const ContactWrap = styled.section`
   margin: 10em auto;
   padding: 0 2rem;
   max-width: ${({ theme }) => theme.deviceSizes.maxSize};
-`
-const Icon = css`
-  width: 7rem;
-  height: 7rem;
-  ${({ theme }) => theme.device.desktop} {
-    width: 20rem;
-    height: 20rem;
-  }
 `
 
 const ContactInfo = styled.div`
