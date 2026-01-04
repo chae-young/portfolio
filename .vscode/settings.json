@@ -5,9 +5,15 @@
   },
   "editor.formatOnSave": true,
   "editor.formatOnPaste": false,
+  "prettier.requireConfig": true,
   "prettier.useEditorConfig": false,
   "prettier.useTabs": false,
-  "prettier.configPath": ".prettierrc",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "path-intellisense.mappings": {
     "@": "${workspaceRoot}/src"
   },
