@@ -20,11 +20,12 @@ const fonts = {
 }
 
 const colors = {
-  black: "rgb(0,0,0)",
+  black: "#1c1c1c",
   white: "rgb(255,255,255)",
-  gray: "rgb(103,103,103)",
+  gray: "#a0a0a0",
   gray_2: "#767676",
   green_1: "#3cb46e",
+  purple: "rgb(200,150,255)",
 }
 const theme = {
   colors,

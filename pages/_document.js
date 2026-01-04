@@ -1,5 +1,5 @@
+import Document, { Head, Html, Main, NextScript } from "next/document"
 import React from "react"
-import Document, { Html, Head, Main, NextScript } from "next/document"
 import { ServerStyleSheet } from "styled-components"
 
 export default class MyDocument extends Document {
@@ -36,7 +36,7 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet"
           />
           <link

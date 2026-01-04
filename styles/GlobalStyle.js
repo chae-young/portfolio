@@ -6,7 +6,6 @@ import reset from "styled-reset"
 const GlobalStyle = createGlobalStyle`
 ${reset};
     html,body{
-
         padding: 0;
         margin: 0;
         font-family:-apple-system, "Manrope", "Noto Sans KR","Playfair Display", BlinkMacSystemFont,  Roboto, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";   

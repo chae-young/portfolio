@@ -1,9 +1,9 @@
-import React from "react"
 import PropTypes from "prop-types"
+import React from "react"
 
 import styled from "styled-components"
-import Header from "./Header"
 import Footer from "./Footer"
+import Header from "./Header"
 
 const Layout = ({ children }) => {
   return (
@@ -19,7 +19,5 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-const LayoutWrap = styled.div`
-  overflow-x: hidden;
-`
+const LayoutWrap = styled.div``
 export default Layout

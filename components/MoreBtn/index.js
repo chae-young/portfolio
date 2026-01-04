@@ -1,7 +1,7 @@
-import React from "react"
 import Link from "next/link"
-import styled from "styled-components"
 import PropTypes from "prop-types"
+import React from "react"
+import styled from "styled-components"
 
 const MoreBtn = ({ href, text }) => {
   return (
@@ -16,8 +16,7 @@ const MoreBtn = ({ href, text }) => {
 }
 const MoreBtnWrap = styled.div`
   position: relative;
-  margin-top: 4em;
-  display: inline-block;
+  width: 100px;
   padding: 1rem 2rem;
   border-radius: 20px;
   /* border: 1px solid #000; */

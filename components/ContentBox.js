@@ -1,5 +1,6 @@
-import React from "react"
+import { motion } from "framer-motion"
 import PropTypes from "prop-types"
+import React from "react"
 
 import styled from "styled-components"
 
@@ -13,23 +14,26 @@ const ContentBox = ({ children, title }) => {
 }
 
 const Title = ({ children }) => {
-  return <TitleStyle>{children}</TitleStyle>
+  return (
+    <TitleStyle
+      initial={{ y: 50, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 1, ease: "easeInOut" }}
+      viewport={{ once: true, amount: 0.5 }}
+    >
+      {children}
+    </TitleStyle>
+  )
 }
 
-const Content = styled.section`
-  padding: 12rem 0 5rem;
+const Content = styled.section``
+const TitleStyle = styled(motion.h2)`
+  margin: 0 auto 4rem;
+  font-size: 5.2rem;
+  max-width: ${({ theme }) => theme.deviceSizes.maxSize};
 
   ${({ theme }) => theme.device.desktop} {
-    padding: 12rem 0;
-  }
-`
-const TitleStyle = styled.h2`
-  font-size: 3.4rem;
-  font-weight: 900;
-  max-width: ${({ theme }) => theme.deviceSizes.maxSize};
-  margin: 0 auto 1em;
-  padding: 0 2rem;
-  ${({ theme }) => theme.device.desktop} {
+    margin-bottom: 6rem;
     font-size: 10rem;
   }
 `

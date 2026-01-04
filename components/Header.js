@@ -1,10 +1,27 @@
-import React, { useState } from "react"
 import Link from "next/link"
+import React, { useEffect, useState } from "react"
 
 import styled, { css } from "styled-components"
 
 const Header = () => {
   const [navActive, setNavAtive] = useState(false)
+  const [isIntroVisible, setIsIntroVisible] = useState(true)
+
+  useEffect(() => {
+    const introElement = document.getElementById("intro")
+    if (!introElement) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsIntroVisible(entry.isIntersecting)
+      },
+      { threshold: 0 }
+    )
+
+    observer.observe(introElement)
+
+    return () => observer.disconnect()
+  }, [])
 
   const onClickNav = () => {
     setNavAtive((prev) => !prev)
@@ -12,17 +29,17 @@ const Header = () => {
 
   return (
     <HeaderWrap>
-      <Logo>
+      <Logo $isIntroVisible={isIntroVisible}>
         <Link href="/">
           <a>
             <img src="/images/logo.png" width="100%" alt="이채영 포트폴리오" />
           </a>
         </Link>
       </Logo>
-      <Hamburger onClick={onClickNav} $active={navActive}>
+      <Hamburger onClick={onClickNav} $active={navActive} $isIntroVisible={isIntroVisible}>
         <span />
       </Hamburger>
-      <Nav $active={navActive}>
+      <Nav $active={navActive} $isIntroVisible={isIntroVisible}>
         <ul>
           <li>
             <Link href="/about">About</Link>
@@ -40,14 +57,21 @@ const Header = () => {
 }
 const Logo = styled.h1`
   width: 60px;
+
+  img {
+    filter: ${(props) => (props.$isIntroVisible ? "none" : "brightness(0) invert(1)")};
+    transition: filter 0.3s ease;
+  }
 `
 const HeaderWrap = styled.header`
   position: fixed;
   left: 0;
   top: 0;
+  right: 0;
   z-index: 8;
   width: 100%;
-  padding: 1rem 6rem;
+  max-width: ${({ theme }) => theme.deviceSizes.maxSize};
+  margin: auto;
   box-sizing: border-box;
   ${({ theme }) => theme.device.mobileL} {
     padding: 1rem 2rem;
@@ -60,6 +84,9 @@ const HamburgerElement = css`
   border-radius: 0;
   position: absolute;
   transition: transform 0.15s ease;
+
+  ${({ $isIntroVisible }) =>
+    !$isIntroVisible && `background-color: #fff;`}
 `
 const Hamburger = styled.button`
   position: absolute;
@@ -101,7 +128,9 @@ const Nav = styled.nav`
   top: 64px;
   display: ${(props) => (props.$active ? "block" : "none")};
   padding: 2rem;
-  background: ${({ theme }) => theme.colors.black};
+  background: ${(props) =>
+    props.$isIntroVisible ? props.theme.colors.black : "#fff"};
+  transition: background 0.3s ease;
   ${({ theme }) => theme.device.tabletL} {
     right: 2rem;
   }
@@ -110,7 +139,8 @@ const Nav = styled.nav`
       line-height: 2;
       a {
         font-size: 1.4rem;
-        color: rgb(255, 255, 255);
+        color: ${(props) => (props.$isIntroVisible ? "#fff" : "#000")};
+        transition: color 0.3s ease;
       }
     }
   }
