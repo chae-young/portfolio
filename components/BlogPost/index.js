@@ -93,7 +93,13 @@ const BlogPost = () => {
           right={
             <BlogSection>
               {posts.map((post, index) => (
-                <article key={index}>
+                <motion.article
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ type: "spring", duration: 0.5 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                >
                   <h3>
                     <a
                       href={post.link}
@@ -107,7 +113,7 @@ const BlogPost = () => {
                     <p>{stripHtmlTags(post.description).substring(0, 300)}</p>
                     <time>{formatDate(post.pubDate)}</time>
                   </div>
-                </article>
+                </motion.article>
               ))}
             </BlogSection>
           }

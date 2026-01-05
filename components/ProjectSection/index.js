@@ -18,7 +18,7 @@ const ProjectSection = () => {
               transition={{
                 duration: 0.5,
                 type: "spring",
-                delay: idx * 0.2 + 0.3, // idx로 딜레이를 개별 조정 (순서대로 애니메이션)
+                delay: idx * 0.2, // idx로 딜레이를 개별 조정 (순서대로 애니메이션)
               }}
               viewport={{ once: true, amount: 0.5 }}
             >
