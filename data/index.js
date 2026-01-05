@@ -77,7 +77,7 @@ export const PROJECTS = [
         details: ["SSO 통합 로그인 구현", "PASS 본인인증 연동"],
       },
     ],
-    detailImg: ["./images/project/lg-home.png"],
+    // detailImg: ["./images/project/lg-home.png"],
     date: "2024.09 ~ 2025.03",
     skill: ["React", "Tanstack Query", "Zustand", "Radix UI"],
   },

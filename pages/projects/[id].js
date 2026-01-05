@@ -114,23 +114,25 @@ const Projects = () => {
           </ProjectSub>
         </ProjectInfo>
         {/* 사진 유무 */}
-        <DetailImages $half={curProject?.detailImgHalf}>
-          {curProject?.detailImg.map((img, idx) => (
-            <motion.li
-              key={`${curProject?.title}-${idx}`}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{
-                duration: 0.5,
-                ease: "easeInOut",
-                delay: idx * 0.15,
-              }}
-              viewport={{ once: true, amount: 0.5 }}
-            >
-              <img src={getPublicImagePath(img)} alt={curProject?.title} />
-            </motion.li>
-          ))}
-        </DetailImages>
+        {curProject?.detailImg && (
+          <DetailImages $half={curProject?.detailImgHalf}>
+            {curProject?.detailImg.map((img, idx) => (
+              <motion.li
+                key={`${curProject?.title}-${idx}`}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{
+                  duration: 0.5,
+                  ease: "easeInOut",
+                  delay: idx * 0.15,
+                }}
+                viewport={{ once: true, amount: 0.5 }}
+              >
+                <img src={getPublicImagePath(img)} alt={curProject?.title} />
+              </motion.li>
+            ))}
+          </DetailImages>
+        )}
       </InfoContent>
     </Layout>
   )
@@ -278,11 +280,15 @@ const ProjectSkill = styled.ul`
 
 const DetailImages = styled(motion.ul)`
   display: ${({ $half }) => ($half ? "grid" : "block")};
-  grid-template-columns: ${({ $half }) => ($half ? "1fr 1fr" : "1fr")};
+
   flex-wrap: wrap;
   gap: 20px;
   li {
     width: 100%;
+  }
+
+  ${({ theme }) => theme.device.desktop} {
+    grid-template-columns: ${({ $half }) => ($half ? "1fr 1fr" : "1fr")};
   }
 `
 export default Projects
