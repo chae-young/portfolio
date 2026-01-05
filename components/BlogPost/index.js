@@ -19,7 +19,7 @@ const BlogPost = () => {
   }, [])
 
   useEffect(() => {
-    if (!mounted) return // 서버사이드에서는 실행 안함
+    if (!mounted) return
 
     const fetchBlogPosts = async () => {
       try {
@@ -40,7 +40,7 @@ const BlogPost = () => {
         const data = await response.json()
 
         if (data.status === "ok") {
-          const splicedItems = data.items.splice(0, 5)
+          const splicedItems = data.items.splice(0, 8)
           setPosts(splicedItems)
         } else {
           throw new Error("RSS 피드를 가져올 수 없습니다")
@@ -56,9 +56,8 @@ const BlogPost = () => {
     fetchBlogPosts()
   }, [mounted])
 
-  // HTML 태그 제거 (서버사이드 안전)
   const stripHtmlTags = (html) => {
-    if (typeof window === "undefined") return html // 서버사이드에서는 그대로 반환
+    if (typeof window === "undefined") return html
 
     const tmp = document.createElement("div")
     tmp.innerHTML = html
@@ -87,9 +86,8 @@ const BlogPost = () => {
         <TwoColumnLayout
           left={
             <p>
-              다양한 프로젝트를 경험하며
-              <br />
-              개발 역량을 넓혀가고 있습니다.
+              누적 조회자수 21만의 블로그를 운영하며 지식과 경험을 꾸준히
+              공유하고 있습니다.
             </p>
           }
           right={

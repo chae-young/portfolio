@@ -78,6 +78,10 @@ const IntroInner = styled.div`
   margin: auto;
   width: 100%;
   padding: 0 2rem;
+
+  ${({ theme }) => theme.device.desktop} {
+    padding: 0 6rem;
+  }
 `
 
 const BackgroundGradient = styled.div`
@@ -183,8 +187,8 @@ const Heart = styled.div`
   }
 
   ${({ theme }) => theme.device.desktop} {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     margin: 2em 0 0;
   }
 `

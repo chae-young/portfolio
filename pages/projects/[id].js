@@ -1,3 +1,5 @@
+import { motion } from "framer-motion"
+
 import { useRouter } from "next/router"
 import React from "react"
 import styled from "styled-components"
@@ -16,15 +18,61 @@ const Projects = () => {
   }
   return (
     <Layout>
-      <BackgroundArea
-        $img={getPublicImagePath(curProject?.src)}
-        $color={curProject?.color}
-      >
-        <div>Query id: {id}</div>
+      <BackgroundArea $color={curProject?.color}>
+        <BackgroundInner
+          $img={getPublicImagePath(curProject?.src)}
+          initial={{ scale: 1.2, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 2, type: "tween", ease: "easeInOut" }}
+          viewport={{ once: true, amount: 0.5 }}
+        >
+          <motion.div
+            style={{
+              position: "absolute",
+              left: "50%",
+              bottom: "32px",
+              transform: "translateX(-50%)",
+              zIndex: 10,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              pointerEvents: "none",
+            }}
+            initial={{ y: 0 }}
+            animate={{ y: [0, 18, 0] }}
+            transition={{
+              repeat: Infinity,
+              duration: 1.3,
+              ease: "easeInOut",
+            }}
+          >
+            {/* 아래 화살표 아이콘 (svg) */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#fff"
+              class="size-6"
+              width="24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m19.5 8.25-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          </motion.div>
+        </BackgroundInner>
       </BackgroundArea>
       <InfoContent>
         <ProjectInfo>
-          <ProjectOverView>
+          <ProjectOverView
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, type: "spring" }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
             <div>
               <h2>{curProject?.title}</h2>
               <p>{curProject?.desc}</p>
@@ -32,71 +80,122 @@ const Projects = () => {
             <div>
               <h3>상세내용</h3>
               <ul>
-                {curProject?.overview.map((desc, idx) => (
+                {curProject?.overview.map((content, idx) => (
                   // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                  <li key={idx}>{desc}</li>
+                  <>
+                    <li key={idx}>{content.title}</li>
+                    {content.details && (
+                      <ProjectOverViewSub>
+                        {content.details.map((detail, idx) => (
+                          <li key={idx}>{detail}</li>
+                        ))}
+                      </ProjectOverViewSub>
+                    )}
+                  </>
                 ))}
               </ul>
             </div>
           </ProjectOverView>
-          <ProjectSub>
+          <ProjectSub
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, type: "spring", delay: 0.3 }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
             <dl>
               <dt>프로젝트 기간</dt>
-              <dd>2025~242345</dd>
+              <dd>{curProject?.date}</dd>
             </dl>
             <ProjectSkill>
-              <li>Vue</li>
-              <li>Vue</li>
-              <li>Vue</li>
+              {curProject?.skill.map((item, idx) => (
+                <li key={`${item}-${idx}`}>{item}</li>
+              ))}
             </ProjectSkill>
           </ProjectSub>
         </ProjectInfo>
         {/* 사진 유무 */}
-        <ul>
+        <DetailImages $half={curProject?.detailImgHalf}>
           {curProject?.detailImg.map((img, idx) => (
-            <li key={`${curProject?.title}-${idx}`}>
+            <motion.li
+              key={`${curProject?.title}-${idx}`}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{
+                duration: 0.5,
+                ease: "easeInOut",
+                delay: idx * 0.15,
+              }}
+              viewport={{ once: true, amount: 0.5 }}
+            >
               <img src={getPublicImagePath(img)} alt={curProject?.title} />
-            </li>
+            </motion.li>
           ))}
-        </ul>
+        </DetailImages>
       </InfoContent>
     </Layout>
   )
 }
 
-const BackgroundArea = styled.div`
+const BackgroundArea = styled(motion.div)`
+  height: 100vh;
+  overflow: hidden;
+  background-color: ${({ $color }) => $color};
+
+  ${({ theme }) => theme.device.mobile} {
+    height: 60vh;
+  }
+`
+
+const BackgroundInner = styled(motion.div)`
+  position: relative;
   background-image: url(${({ $img }) => $img});
   background-color: ${({ $color }) => $color};
   background-repeat: no-repeat;
   background-size: 25%;
   background-position: center;
-  height: 50vh;
+  height: 100%;
 
-  ${({ theme }) => theme.device.desktop} {
-    height: 100vh;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      rgba(88, 88, 88, 0.03) 50%,
+      rgba(0, 0, 0, 0.2) 100%
+    );
   }
 `
 const InfoContent = styled.div`
   max-width: ${({ theme }) => theme.deviceSizes.maxSize};
   margin: auto;
-  padding: 10rem 2rem 0;
+  padding: 10rem 6rem 0;
+  font-size: 1.7rem;
+  line-height: 1.8;
+  margin-bottom: 10rem;
 
   img {
     max-width: 100%;
   }
   ${({ theme }) => theme.device.tabletL} {
     padding: 4rem 2rem 0;
+    font-size: 1.4rem;
   }
 `
 
-const ProjectInfo = styled.div`
+const ProjectInfo = styled(motion.div)`
   display: flex;
   font-size: 1.6rem;
   gap: 9.4rem;
   margin-bottom: 10rem;
 
   h2 {
-    font-size: 7.2rem;
+    font-size: 3.2rem;
     font-weight: 600;
     margin-bottom: 2rem;
   }
@@ -105,7 +204,12 @@ const ProjectInfo = styled.div`
     flex-direction: column;
     margin-bottom: 6rem;
 
-    gap: 2rem;
+    gap: 4rem;
+
+    h2 {
+      font-size: 2.8rem;
+      margin-bottom: 2rem;
+    }
   }
 `
 
@@ -116,12 +220,12 @@ const ImportDesc = styled.p`
   }
 `
 
-const ProjectOverView = styled.section`
+const ProjectOverView = styled(motion.section)`
   flex: 1;
-  font-size: 2rem;
+  font-size: 1.4rem;
 
   h3 {
-    font-size: 2.6rem;
+    font-size: 2rem;
     margin-bottom: 2rem;
   }
   > div + div {
@@ -134,10 +238,22 @@ const ProjectOverView = styled.section`
     padding-left: 10px;
     margin-left: 10px;
   }
+
+  ${({ theme }) => theme.device.desktop} {
+    font-size: 1.7rem;
+
+    h3 {
+      font-size: 2.6rem;
+    }
+  }
 `
-const ProjectSub = styled.section`
+
+const ProjectOverViewSub = styled.ul`
+  padding-left: 20px;
+  margin-left: 20px;
+`
+const ProjectSub = styled(motion.div)`
   flex: 0.5;
-  font-size: 2rem;
   display: flex;
   flex-direction: column;
   gap: 4rem;
@@ -149,6 +265,7 @@ const ProjectSub = styled.section`
 const ProjectSkill = styled.ul`
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 
   > li {
     padding: 0.5rem 2rem;
@@ -156,6 +273,16 @@ const ProjectSkill = styled.ul`
     border-radius: 2rem;
     font-size: 1.4rem;
     background-color: ${({ theme }) => theme.colors.black};
+  }
+`
+
+const DetailImages = styled(motion.ul)`
+  display: ${({ $half }) => ($half ? "grid" : "block")};
+  grid-template-columns: ${({ $half }) => ($half ? "1fr 1fr" : "1fr")};
+  flex-wrap: wrap;
+  gap: 20px;
+  li {
+    width: 100%;
   }
 `
 export default Projects

@@ -7,7 +7,7 @@ const MoreBtn = ({ href, text }) => {
   return (
     <MoreBtnWrap>
       <Link href={href}>
-        <a rel="noopener noreferrer" target="_blank">
+        <a href={href} target="_blank" rel="noopener noreferrer">
           {text}
         </a>
       </Link>
@@ -16,12 +16,13 @@ const MoreBtn = ({ href, text }) => {
 }
 const MoreBtnWrap = styled.div`
   position: relative;
-  width: 100px;
+  display: inline-block;
   padding: 1rem 2rem;
   border-radius: 20px;
   /* border: 1px solid #000; */
   background-color: #6c6c6c;
   overflow: hidden;
+  margin-top: 4rem;
 
   &:after {
     content: "";

@@ -9,7 +9,7 @@ const CAREER_DATA = [
     id: 1,
     status: true,
     year: "2025.05 - 재직중",
-    company: "디플루이드",
+    company: "(주)디플루이드",
     description: [
       "React 기반 신규 서비스 구축 프로젝트 리딩, 핵심 기능 개발 구현",
       "대기업(LG Uplus) 클라이언트 웹서비스 운영 담당, Vue.js 기반 레거시 시스템 개선 및 신규 기능 개발",
@@ -17,42 +17,23 @@ const CAREER_DATA = [
   },
   {
     id: 2,
-    status: true,
-    year: "2025.05 - 재직중",
-    company: "디플루이드",
+    status: false,
+    year: "2022.02 - 2023.08",
+    company: "(주)더블유컨셉코리아",
     description: [
-      "React 기반 신규 서비스 구축 프로젝트 리딩, 핵심 기능 개발 구현",
-      "대기업(LG Uplus) 클라이언트 웹서비스 운영 담당, Vue.js 기반 레거시 시스템 개선 및 신규 기능 개발",
+      "W컨셉 기획전/프로모션 무드에 맞는 퍼블리싱 및 모션 구현",
+      "디자이너용 모션 탬플릿 개발 및 이슈 대응",
     ],
   },
   {
     id: 3,
-    status: true,
-    year: "2025.05 - 재직중",
-    company: "디플루이드",
+    status: false,
+    year: "2018.02 - 2021.02",
+    company: "(주)스타일쉽",
     description: [
-      "React 기반 신규 서비스 구축 프로젝트 리딩, 핵심 기능 개발 구현",
-      "대기업(LG Uplus) 클라이언트 웹서비스 운영 담당, Vue.js 기반 레거시 시스템 개선 및 신규 기능 개발",
-    ],
-  },
-  {
-    id: 4,
-    status: true,
-    year: "2025.05 - 재직중",
-    company: "디플루이드",
-    description: [
-      "React 기반 신규 서비스 구축 프로젝트 리딩, 핵심 기능 개발 구현",
-      "대기업(LG Uplus) 클라이언트 웹서비스 운영 담당, Vue.js 기반 레거시 시스템 개선 및 신규 기능 개발",
-    ],
-  },
-  {
-    id: 5,
-    status: true,
-    year: "2025.05 - 재직중",
-    company: "디플루이드",
-    description: [
-      "React 기반 신규 서비스 구축 프로젝트 리딩, 핵심 기능 개발 구현",
-      "대기업(LG Uplus) 클라이언트 웹서비스 운영 담당, Vue.js 기반 레거시 시스템 개선 및 신규 기능 개발",
+      "FILA ,라이카, 골든구스, 콜럼비아 브랜드 포함 20여개 사이트 구축 및 유지보수",
+      "웹표준, 웹접근성 준수하며 시맨틱 마크업 및 프로모션 페이지 다수 제작",
+      "반응형 UI 구현 및 크로스 브라우징 대응",
     ],
   },
 ]
@@ -99,13 +80,17 @@ const Career = () => {
 }
 
 const CareerItem = styled(motion.div)`
-  margin-bottom: 120px;
+  margin-bottom: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   &:last-child {
     margin-bottom: 0;
+  }
+
+  ${({ theme }) => theme.device.desktop} {
+    margin-bottom: 120px;
   }
 `
 

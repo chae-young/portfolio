@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <FooterWrap>
       <LinkList />
-      <Copy>(c)2024 Made by leechaeng</Copy>
+      <Copy>(c)2026 Made by leechaeng</Copy>
     </FooterWrap>
   )
 }

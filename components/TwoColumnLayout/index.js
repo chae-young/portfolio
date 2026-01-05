@@ -5,7 +5,9 @@ const TwoColumnLayout = ({ left, right }) => {
     <Wrapper>
       <LayoutWrapper>
         <LeftSection>{left}</LeftSection>
-        <RightSection>{right}</RightSection>
+        <RightSection>
+          <div>{right}</div>
+        </RightSection>
       </LayoutWrapper>
     </Wrapper>
   )
@@ -38,6 +40,10 @@ const LeftSection = styled.div`
   line-height: 1.4;
   margin: 0;
 
+  p {
+    word-break: break-all;
+  }
+
   ${({ theme }) => theme.device.desktop} {
     position: sticky;
     top: 0;
@@ -51,6 +57,7 @@ const LeftSection = styled.div`
 const RightSection = styled.div`
   ${({ theme }) => theme.device.desktop} {
     padding: 100px 0;
+    width: 723px;
   }
 `
 

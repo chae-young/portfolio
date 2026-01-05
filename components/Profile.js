@@ -26,25 +26,20 @@ const Profile = () => {
             <div>
               <h2>
                 안녕하세요! <br />
-                UI/UX를 설계하는 퍼블리셔 이채영입니다 😊
+                사용자 경험과 코드 효율을 동시에 고려하는 프론트엔드 개발자
+                이채영입니다. 😊
               </h2>
               <p>
-                퍼블리싱이 능숙하고 웹 에이전시와 이커머스 플랫폼에 근무하며
-                다양한 UI 경험을 쌓아 왔습니다. 웹 표준을 고려한 시맨틱
-                마크업부터 반응형 웹/적응형 웹까지 마크업하고 스타일링해요.{" "}
-                <br />
-                프론트엔드 기술에도 관심을 가지고 있어 다양한 환경에서 UI 개발을
-                할 수 있습니다! <br />
-                <br />
-                코드를 그려나갈 때 사용자의 입장에서 생각합니다! 사용자에게
-                일관된 UI를 그려내고 기억에 남는 UX를 제공하는 것이 목표입니다.
+                재사용성과 유지보수성을 고려한 코드를 작성하는것을 즐기며, 팀
+                전체의 개발 생산성을 높이는것을 지향합니다. 공통 훅과 컴포넌트를
+                활용해 반복되는 로직을 추상화하여 중복코드 60% 감소, 팀 단위로
+                재사용 가능한 구조를 설계한 경험이 있습니다. <br />
+                안정적이고 유지보수하기 쉬운 코드를 통해, 더 나은 서비스를
+                만들어가는 것을 목표로 하고있습니다.
               </p>
             </div>
 
-            <MoreBtn
-              href="https://fixed-rubidium-143.notion.site/UI-UI-UX-Publisher-7e3eedf08cbf4539ba2922f45079e937?pvs=4"
-              text="프로필 보기"
-            />
+            <MoreBtn href="/profile.pdf" text="프로필 보기" />
           </ProfileInfo>
         </ProfileWrap>
       </Content>
@@ -56,25 +51,37 @@ const ProfileWrap = styled.div`
   max-width: ${({ theme }) => theme.deviceSizes.maxSize};
   margin: auto;
   width: 100%;
+
   ${({ theme }) => theme.device.desktop} {
     display: grid;
-    grid-template: auto / 40% 60%;
+    grid-template-columns: 40% 1fr;
     gap: 60px;
-    max-width: ${({ theme }) => theme.deviceSizes.maxSize};
   }
 `
-const ProfileImg = styled(motion.div)``
+
+const ProfileImg = styled(motion.div)`
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+`
+
 const ProfileInfo = styled(motion.section)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: flex-start;
   margin-top: 2em;
   font-size: 1.4rem;
+  overflow-wrap: break-word;
 
   p {
     margin-top: 2em;
+    word-break: keep-all;
     line-height: 26px;
   }
+
   ${({ theme }) => theme.device.desktop} {
     font-size: 2rem;
     margin: 0;

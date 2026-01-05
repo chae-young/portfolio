@@ -15,7 +15,7 @@ const Header = () => {
       ([entry]) => {
         setIsIntroVisible(entry.isIntersecting)
       },
-      { threshold: 0 }
+      { threshold: 0 },
     )
 
     observer.observe(introElement)
@@ -36,7 +36,11 @@ const Header = () => {
           </a>
         </Link>
       </Logo>
-      <Hamburger onClick={onClickNav} $active={navActive} $isIntroVisible={isIntroVisible}>
+      <Hamburger
+        onClick={onClickNav}
+        $active={navActive}
+        $isIntroVisible={isIntroVisible}
+      >
         <span />
       </Hamburger>
       <Nav $active={navActive} $isIntroVisible={isIntroVisible}>
@@ -59,7 +63,8 @@ const Logo = styled.h1`
   width: 60px;
 
   img {
-    filter: ${(props) => (props.$isIntroVisible ? "none" : "brightness(0) invert(1)")};
+    filter: ${(props) =>
+      props.$isIntroVisible ? "none" : "brightness(0) invert(1)"};
     transition: filter 0.3s ease;
   }
 `
@@ -73,8 +78,10 @@ const HeaderWrap = styled.header`
   max-width: ${({ theme }) => theme.deviceSizes.maxSize};
   margin: auto;
   box-sizing: border-box;
+  padding: 1rem 2rem;
   ${({ theme }) => theme.device.mobileL} {
-    padding: 1rem 2rem;
+  }
+  ${({ theme }) => theme.device.desktop} {
   }
 `
 const HamburgerElement = css`
@@ -85,8 +92,7 @@ const HamburgerElement = css`
   position: absolute;
   transition: transform 0.15s ease;
 
-  ${({ $isIntroVisible }) =>
-    !$isIntroVisible && `background-color: #fff;`}
+  ${({ $isIntroVisible }) => !$isIntroVisible && `background-color: #fff;`}
 `
 const Hamburger = styled.button`
   position: absolute;

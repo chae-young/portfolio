@@ -72,7 +72,8 @@ const ProjectItem = styled(motion.li)`
   }
   p {
     font-size: 1.6rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
+    color: #fff;
   }
 
   ${({ theme }) => theme.device.desktop} {
@@ -81,7 +82,7 @@ const ProjectItem = styled(motion.li)`
       position: absolute;
       bottom: 20px;
       left: 20px;
-      color: #fff;
+      margin-top: 2rem;
       font-size: 2.6rem;
       opacity: 0;
       transition: opacity 0.3s ease, visibility 0.3s ease;
