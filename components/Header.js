@@ -48,9 +48,9 @@ const Header = () => {
           <li>
             <Link href="/about">About</Link>
           </li>
-          <li>
+          {/* <li>
             <Link href="/projects">Work</Link>
-          </li>
+          </li> */}
           <li>
             <a href="mailto:leechaeng2222@gmail.com">Contact</a>
           </li>
@@ -77,7 +77,6 @@ const HeaderWrap = styled.header`
   width: 100%;
   max-width: ${({ theme }) => theme.deviceSizes.maxSize};
   margin: auto;
-  box-sizing: border-box;
   padding: 1rem 2rem;
   ${({ theme }) => theme.device.mobileL} {
   }
