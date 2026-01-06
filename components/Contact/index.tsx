@@ -40,8 +40,9 @@ const Contact = () => {
               <Image
                 src="/images/icon-letter2.png"
                 alt="메일"
-                layout="fill"
-                objectFit="cover"
+                fill={true}
+                priority
+                style={{ objectFit: "cover" }}
               />
             </FloatingBox>
             <TextInfo>click!</TextInfo>

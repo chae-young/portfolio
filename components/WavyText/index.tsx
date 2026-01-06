@@ -1,10 +1,17 @@
 import React from "react"
 import { motion } from "framer-motion"
 import styled from "styled-components"
-import PropTypes from "prop-types"
 
-const WavyText = ({ text, ftSize, mFtSize }) => {
-  const letters = Array.from(text)
+const TitleWrap = motion.h2
+
+interface WavyTextProps {
+  text: string
+  ftSize: number
+  mFtSize: number
+}
+
+const WavyText = ({ text, ftSize, mFtSize }: WavyTextProps) => {
+  const letters: string[] = Array.from(text)
 
   const Mparent = {
     hidden: {
@@ -55,7 +62,7 @@ const WavyText = ({ text, ftSize, mFtSize }) => {
   )
 }
 
-const Title = styled(motion.h2)`
+const Title = styled(TitleWrap)<{ $ftSize: number; $mFtSize: number }>`
   display: flex;
   overflow: hidden;
   font-size: ${(props) => props.$mFtSize}rem;
@@ -65,11 +72,5 @@ const Title = styled(motion.h2)`
     font-size: ${(props) => props.$ftSize}rem;
   }
 `
-
-WavyText.propTypes = {
-  mFtSize: PropTypes.number.isRequired,
-  ftSize: PropTypes.number.isRequired,
-  text: PropTypes.string.isRequired,
-}
 
 export default WavyText

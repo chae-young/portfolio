@@ -4,6 +4,8 @@ import styled from "styled-components"
 import { PROJECTS } from "../../data"
 import ContentBox from "../ContentBox"
 
+const ProjectItemLI = motion.li
+
 const ProjectSection = () => {
   return (
     <article>
@@ -22,13 +24,11 @@ const ProjectSection = () => {
               }}
               viewport={{ once: true, amount: 0.5 }}
             >
-              <Link href={`/projects/${item.id}`} passHref legacyBehavior>
-                <a>
-                  <div>
-                    <img src={item.src} alt={item.title} />
-                  </div>
-                  <p>{item.title}</p>
-                </a>
+              <Link href={`/projects/${item.id}`}>
+                <div>
+                  <img src={item.src} alt={item.title} />
+                </div>
+                <p>{item.title}</p>
               </Link>
             </ProjectItem>
           ))}
@@ -55,7 +55,7 @@ const ProjectList = styled.ul`
   }
 `
 
-const ProjectItem = styled(motion.li)`
+const ProjectItem = styled(ProjectItemLI)<{ $bgColor: string }>`
   position: relative;
   div {
     display: flex;

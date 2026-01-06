@@ -16,24 +16,22 @@ export const LinkList = () => {
   return (
     <LinkLisBox>
       <li>
-        <Link href="mailto:cycy8527@gmail.com" rel="noreferrer noopener">
-          <a target="_blank" rel="noopener noreferrer">
-            Mail
-          </a>
+        <Link href="mailto:cycy8527@gmail.com" target="_blank">
+          Mail
         </Link>
       </li>
       <li>
-        <Link href="https://chaeyoung2.tistory.com/" rel="noreferrer noopener">
-          <a target="_blank" rel="noopener noreferrer">
-            Blog
-          </a>
+        <Link href="https://chaeyoung2.tistory.com/" target="_blank">
+          Blog
         </Link>
       </li>
       <li>
-        <Link href=" https://github.com/chae-young" rel="noreferrer noopener">
-          <a target="_blank" rel="noopener noreferrer">
-            Github
-          </a>
+        <Link
+          href=" https://github.com/chae-young"
+          rel="noreferrer noopener"
+          target="_blank"
+        >
+          Github
         </Link>
       </li>
     </LinkLisBox>

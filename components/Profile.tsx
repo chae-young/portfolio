@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import React from "react"
 import styled from "styled-components"
-import Content from "../components/ContentBox"
+import Content from "./ContentBox"
 import MoreBtn from "./MoreBtn"
 
 const Profile = () => {
