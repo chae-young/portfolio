@@ -6,6 +6,10 @@ import styled from "styled-components"
 import Layout from "../../components/Layout"
 import { PROJECTS } from "../../data"
 
+const BackgroundAreaDiv = motion.div
+const BackgroundInnerDiv = motion.div
+const DetailImagesUl = motion.ul
+
 const Projects = () => {
   const router = useRouter()
   const { id } = router.query
@@ -53,7 +57,7 @@ const Projects = () => {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="#fff"
-              class="size-6"
+              className="size-6"
               width="24"
             >
               <path
@@ -138,20 +142,21 @@ const Projects = () => {
   )
 }
 
-const BackgroundArea = styled(motion.div)`
+const BackgroundArea = styled(BackgroundAreaDiv)<{ $color: string }>`
   height: 100vh;
   overflow: hidden;
   background-color: ${({ $color }) => $color};
 
-  ${({ theme }) => theme.device.mobile} {
+  ${({ theme }) => theme.device.mobileL} {
     height: 60vh;
   }
 `
 
-const BackgroundInner = styled(motion.div)`
+const BackgroundInner = styled(BackgroundInnerDiv)<{
+  $img: string
+}>`
   position: relative;
   background-image: url(${({ $img }) => $img});
-  background-color: ${({ $color }) => $color};
   background-repeat: no-repeat;
   background-size: 25%;
   background-position: center;
@@ -278,7 +283,7 @@ const ProjectSkill = styled.ul`
   }
 `
 
-const DetailImages = styled(motion.ul)`
+const DetailImages = styled(DetailImagesUl)<{ $half: boolean }>`
   display: ${({ $half }) => ($half ? "grid" : "block")};
 
   flex-wrap: wrap;

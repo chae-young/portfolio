@@ -4,6 +4,8 @@ import styled from "styled-components"
 import { PROJECTS } from "../../data"
 import ContentBox from "../ContentBox"
 
+const ProjectItemLI = motion.li
+
 const ProjectSection = () => {
   return (
     <article>
@@ -53,7 +55,7 @@ const ProjectList = styled.ul`
   }
 `
 
-const ProjectItem = styled(motion.li)`
+const ProjectItem = styled(ProjectItemLI)<{ $bgColor: string }>`
   position: relative;
   div {
     display: flex;

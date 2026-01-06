@@ -66,7 +66,7 @@ const Career = () => {
                   <CareerCompany>{career.company}</CareerCompany>
                   <CareerDescription>
                     {career.description.map((item, idx) => (
-                      <li key={item.id}>{item}</li>
+                      <li key={idx}>{item}</li>
                     ))}
                   </CareerDescription>
                 </CareerItem>

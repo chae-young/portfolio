@@ -48,7 +48,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />
 
-          {this.props.styleTags}
+          {this.props.styles}
         </Head>
         <body>
           <Main />

@@ -19,7 +19,7 @@ const Project = ({ src, name, desc, tags }) => {
       viewport={{ once: true, amount: 0 }}
     >
       <ProjectFigureImg>
-        <Image src={src} alt={name} sizes="100vw" layout="fill" />
+        <Image src={src} alt={name} sizes="100vw" fill={true} priority />
       </ProjectFigureImg>
       <ProjectFigcaption>
         <strong>{name}</strong>

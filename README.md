@@ -16,6 +16,7 @@ Next.js 15, TypeScript, styled-components로 구축된 포트폴리오 웹사이
 ## 🛠 기술 스택
 
 ### 현재 (v1.0.0)
+
 - **Framework**: Next.js 12.3.4 (Pages Router)
 - **Language**: JavaScript
 - **Styling**: styled-components 6.1.8
@@ -23,6 +24,7 @@ Next.js 15, TypeScript, styled-components로 구축된 포트폴리오 웹사이
 - **React**: 18.2.0
 
 ### 목표 (v2.0.0)
+
 - **Framework**: Next.js 15.1.0 (Pages Router)
 - **Language**: TypeScript 5.3
 - **Styling**: styled-components 6.1.8
@@ -40,17 +42,20 @@ Next.js 12 → 15로의 메이저 업그레이드와 JavaScript → TypeScript �
 **전략**: 점진적 업그레이드 (12 → 13 → 14 → 15)
 **기간**: 약 24-31시간 예상
 
-### Phase 1: TypeScript 기초 작업
+~~### Phase 1: TypeScript 기초 작업~~
 
 **목표**: Next.js 업그레이드 전 TypeScript 인프라 구축
 
 #### 작업 내용
+
 1. **TypeScript 설치**
+
    ```bash
    npm install --save-dev typescript @types/react@18.3 @types/react-dom@18.3 @types/node
    ```
 
 2. **설정 파일 생성**
+
    - `tsconfig.json` - TypeScript 설정
    - `types/index.ts` - 핵심 인터페이스 정의
    - `types/styled.d.ts` - styled-components 테마 타입
@@ -68,6 +73,7 @@ Next.js 12 → 15로의 메이저 업그레이드와 JavaScript → TypeScript �
 #### 중요 변경사항
 
 1. **package.json 업데이트**
+
    ```json
    {
      "dependencies": {
@@ -79,21 +85,23 @@ Next.js 12 → 15로의 메이저 업그레이드와 JavaScript → TypeScript �
    ```
 
 2. **next.config.js 수정** ⚠️ 필수
+
    ```javascript
    module.exports = {
      reactStrictMode: true,
-     output: 'export',              // 'next export' 대체
+     output: "export", // 'next export' 대체
      images: {
-       unoptimized: true,           // 'akamai' 로더 대체
+       unoptimized: true, // 'akamai' 로더 대체
      },
      compiler: {
-       styledComponents: true,      // Babel 대체
+       styledComponents: true, // Babel 대체
      },
      trailingSlash: true,
    }
    ```
 
 3. **제거할 패키지**
+
    - `next-compose-plugins` (더 이상 불필요)
    - `next-images` (Next.js 내장 지원)
    - `prop-types` (TypeScript로 대체)
@@ -118,26 +126,21 @@ Next.js 12 → 15로의 메이저 업그레이드와 JavaScript → TypeScript �
 #### 전환 순서
 
 **우선순위 1: 설정 및 데이터**
+
 1. `styles/theme.js` → `theme.ts`
 2. `data/index.js` → `index.ts` (153줄, 복잡한 구조)
 3. `styles/GlobalStyle.js` → `GlobalStyle.ts`
 
-**우선순위 2: Hooks**
-4. `hooks/useWidth.js` → `useWidth.ts` ⚠️ 무한 루프 버그 수정
+**우선순위 2: Hooks** 4. `hooks/useWidth.js` → `useWidth.ts` ⚠️ 무한 루프 버그 수정
 
-**우선순위 3: Pages**
-5. `pages/_app.js` → `_app.tsx`
-6. `pages/_document.js` → `_document.tsx` ⚠️ SSR 유지 필수
-7. `pages/index.js` → `index.tsx`
-8. `pages/about.js` → `about.tsx`
-9. `pages/projects/[id].js` → `[id].tsx`
+**우선순위 3: Pages** 5. `pages/_app.js` → `_app.tsx` 6. `pages/_document.js` → `_document.tsx` ⚠️ SSR 유지 필수 7. `pages/index.js` → `index.tsx` 8. `pages/about.js` → `about.tsx` 9. `pages/projects/[id].js` → `[id].tsx`
 
-**우선순위 4: 컴포넌트**
-10. 20개 컴포넌트 전체 전환
+**우선순위 4: 컴포넌트** 10. 20개 컴포넌트 전체 전환
 
 #### 주요 개선사항
 
 **1. useWidth Hook 버그 수정**
+
 ```typescript
 // ❌ 이전: 무한 루프 발생
 useEffect(() => {
@@ -155,6 +158,7 @@ useEffect(() => {
 ```
 
 **2. Styled-components Transient Props**
+
 ```typescript
 // ❌ 이전: DOM 경고 발생
 <Title ftSize={20} mFtSize={6}>
@@ -168,12 +172,13 @@ const Title = styled.h2<{ $ftSize: number; $mFtSize: number }>`
 ```
 
 **3. Framer Motion 타입 지정**
+
 ```typescript
 import { Variants } from "framer-motion"
 
 const variants: Variants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1 }
+  visible: { opacity: 1 },
 }
 ```
 
@@ -215,19 +220,19 @@ npm run build       # 정적 export 성공
 
 ### 치명적 영향 (HIGH)
 
-| 이슈 | 설명 | 해결 방안 |
-|------|------|----------|
-| **이미지 로더 제거** | `loader: "akamai"` 옵션이 Next.js 15에서 제거됨 | `unoptimized: true`로 변경 |
-| **정적 export 변경** | `next export` 명령어 deprecated | `output: 'export'` 설정으로 변경 |
-| **Styled-components SSR** | SSR 설정이 잘못되면 FOUC 발생 | `compiler.styledComponents: true` 유지 |
+| 이슈                      | 설명                                            | 해결 방안                              |
+| ------------------------- | ----------------------------------------------- | -------------------------------------- |
+| **이미지 로더 제거**      | `loader: "akamai"` 옵션이 Next.js 15에서 제거됨 | `unoptimized: true`로 변경             |
+| **정적 export 변경**      | `next export` 명령어 deprecated                 | `output: 'export'` 설정으로 변경       |
+| **Styled-components SSR** | SSR 설정이 잘못되면 FOUC 발생                   | `compiler.styledComponents: true` 유지 |
 
 ### 중간 영향 (MEDIUM)
 
-| 이슈 | 설명 | 해결 방안 |
-|------|------|----------|
-| **React 버전 불일치** | react 18.2.0 vs react-dom 18.0.0 | 둘 다 18.3.1로 동기화 |
-| **useWidth 무한 루프** | dependency 배열 오류 | 배열에서 `width` 제거 |
-| **복잡한 데이터 타이핑** | 153줄 PROJECTS 배열 | 인터페이스 신중하게 정의 |
+| 이슈                     | 설명                             | 해결 방안                |
+| ------------------------ | -------------------------------- | ------------------------ |
+| **React 버전 불일치**    | react 18.2.0 vs react-dom 18.0.0 | 둘 다 18.3.1로 동기화    |
+| **useWidth 무한 루프**   | dependency 배열 오류             | 배열에서 `width` 제거    |
+| **복잡한 데이터 타이핑** | 153줄 PROJECTS 배열              | 인터페이스 신중하게 정의 |
 
 ### 낮은 영향 (LOW)
 
@@ -239,24 +244,27 @@ npm run build       # 정적 export 성공
 ### 호환성 깨짐 요약
 
 **Next.js 12 → 13**
+
 - ❌ `next export` → ✅ `output: 'export'`
 - ❌ Akamai 로더 → ✅ `unoptimized: true`
 - ❌ Babel → ✅ SWC
 - ❌ next-images → ✅ 내장 지원
 
 **Next.js 13 → 14**
+
 - ❌ `layout="fill"` → ✅ `fill` prop
 
 **Next.js 14 → 15**
+
 - 사소한 설정 변경만 (Pages Router 유지)
 
 ### 성능 개선 예상
 
-| 항목 | 이전 | 이후 | 개선율 |
-|------|------|------|--------|
-| 빌드 시간 | 30-45초 | 15-25초 | ~40% |
-| 타입 안정성 | 없음 | 컴파일 타임 체크 | - |
-| IDE 지원 | 제한적 | 완전한 자동완성 | - |
+| 항목        | 이전    | 이후             | 개선율 |
+| ----------- | ------- | ---------------- | ------ |
+| 빌드 시간   | 30-45초 | 15-25초          | ~40%   |
+| 타입 안정성 | 없음    | 컴파일 타임 체크 | -      |
+| IDE 지원    | 제한적  | 완전한 자동완성  | -      |
 
 ### 리스크 평가
 
@@ -323,6 +331,7 @@ npx serve out
 - **AWS S3**: S3 버킷에 `/out` 동기화
 
 **빌드 설정**:
+
 - 빌드 명령어: `npm run build`
 - 출력 디렉토리: `out`
 - Node.js 버전: 18.x 이상
@@ -429,6 +438,7 @@ static async getInitialProps(ctx) {
 ### 테마 시스템
 
 `styles/theme.js`에 정의된 테마:
+
 - **Colors**: 색상 팔레트
 - **Fonts**: 폰트 설정
 - **Device**: 반응형 브레이크포인트

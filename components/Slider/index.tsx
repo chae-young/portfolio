@@ -1,9 +1,12 @@
 import React from "react"
 import styled from "styled-components"
 import { motion } from "framer-motion"
-import PropTypes from "prop-types"
 
-const Slider = ({ slideArr }) => {
+interface SliderProps {
+  slideArr: []
+}
+
+const Slider = ({ slideArr }: SliderProps) => {
   const duplicatedSlides = [...slideArr, ...slideArr]
 
   return (
@@ -35,7 +38,7 @@ const SliderBox = styled(motion.div)`
   display: flex;
 `
 
-const Slide = styled.div`
+const Slide = styled.div<{ $slideLeng: number }>`
   flex-shrink: 0;
   width: ${(props) => 300 / props.$slideLeng}vw;
 
@@ -55,7 +58,5 @@ const Slide = styled.div`
     }
   }
 `
-Slider.propTypes = {
-  slideArr: PropTypes.array.isRequired,
-}
+
 export default Slider

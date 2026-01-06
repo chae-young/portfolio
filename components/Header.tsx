@@ -57,7 +57,7 @@ const Header = () => {
     </HeaderWrap>
   )
 }
-const Logo = styled.h1`
+const Logo = styled.h1<{ $isIntroVisible: boolean }>`
   width: 60px;
 
   img {
@@ -72,7 +72,6 @@ const HeaderWrap = styled.header`
   top: 0;
   right: 0;
   z-index: 8;
-  width: 100%;
   max-width: ${({ theme }) => theme.deviceSizes.maxSize};
   margin: auto;
   padding: 1rem 2rem;
@@ -81,7 +80,7 @@ const HeaderWrap = styled.header`
   ${({ theme }) => theme.device.desktop} {
   }
 `
-const HamburgerElement = css`
+const HamburgerElement = css<{ $isIntroVisible: boolean }>`
   width: 30px;
   height: 1px;
   background-color: #000;
@@ -91,7 +90,7 @@ const HamburgerElement = css`
 
   ${({ $isIntroVisible }) => !$isIntroVisible && `background-color: #fff;`}
 `
-const Hamburger = styled.button`
+const Hamburger = styled.button<{ $active: boolean; $isIntroVisible: boolean }>`
   position: absolute;
   right: 4rem;
   top: 2rem;
@@ -125,7 +124,7 @@ const Hamburger = styled.button`
     }
   }
 `
-const Nav = styled.nav`
+const Nav = styled.nav<{ $active: boolean; $isIntroVisible: boolean }>`
   position: absolute;
   right: 4rem;
   top: 64px;
