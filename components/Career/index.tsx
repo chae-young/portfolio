@@ -94,7 +94,7 @@ const CareerItem = styled(motion.div)`
   }
 `
 
-const CareerStatus = styled.span`
+const CareerStatus = styled.span<{ $status: Boolean }>`
   display: flex;
   align-items: center;
   gap: 1rem;
