@@ -1,6 +1,6 @@
 # LeeChaeng Portfolio
 
-Next.js 15, TypeScript, styled-components로 구축된 포트폴리오 웹사이트입니다.
+Next.js 14, TypeScript, styled-components로 구축된 포트폴리오 웹사이트입니다.
 
 ## 📚 목차
 
@@ -15,7 +15,7 @@ Next.js 15, TypeScript, styled-components로 구축된 포트폴리오 웹사이
 
 ## 🛠 기술 스택
 
-### 현재 (v1.0.0)
+### ~~현재~~ 이전 (v1.0.0)
 
 - **Framework**: Next.js 12.3.4 (Pages Router)
 - **Language**: JavaScript
@@ -66,7 +66,7 @@ Next.js 12 → 15로의 메이저 업그레이드와 JavaScript → TypeScript �
    - API 응답 타입 (RSSResponse)
    - 컴포넌트 Props 타입
 
-### Phase 2: Next.js 13 마이그레이션
+~~### Phase 2: Next.js 13 마이그레이션~~
 
 **목표**: 주요 호환성 깨짐 해결
 
@@ -119,7 +119,7 @@ Next.js 12 → 15로의 메이저 업그레이드와 JavaScript → TypeScript �
    }
    ```
 
-### Phase 3: TypeScript 전환
+~~### Phase 3: TypeScript 전환~~
 
 **목표**: 모든 JavaScript 파일을 TypeScript로 전환
 
@@ -182,7 +182,7 @@ const variants: Variants = {
 }
 ```
 
-### Phase 4: Next.js 14 마이그레이션
+~~### Phase 4: Next.js 14 마이그레이션~~
 
 ```json
 {
@@ -504,7 +504,7 @@ ISC
 
 ## 📅 버전 히스토리
 
-- **v1.0.0** (현재): Next.js 12 + JavaScript
+~~- **v1.0.0** (현재): Next.js 12 + JavaScript~~
 - **v2.0.0** (예정): Next.js 15 + TypeScript (24-31시간 예상)
 
 ---
