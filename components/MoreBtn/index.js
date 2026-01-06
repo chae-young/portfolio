@@ -6,10 +6,8 @@ import styled from "styled-components"
 const MoreBtn = ({ href, text }) => {
   return (
     <MoreBtnWrap>
-      <Link href={href}>
-        <a href={href} target="_blank" rel="noopener noreferrer">
-          {text}
-        </a>
+      <Link href={href} target="_blank">
+        {text}
       </Link>
     </MoreBtnWrap>
   )

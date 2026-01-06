@@ -31,9 +31,7 @@ const Header = () => {
     <HeaderWrap>
       <Logo $isIntroVisible={isIntroVisible}>
         <Link href="/">
-          <a>
-            <img src="/images/logo.png" width="100%" alt="이채영 포트폴리오" />
-          </a>
+          <img src="/images/logo.png" width="100%" alt="이채영 포트폴리오" />
         </Link>
       </Logo>
       <Hamburger

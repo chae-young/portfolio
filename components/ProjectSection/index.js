@@ -22,13 +22,11 @@ const ProjectSection = () => {
               }}
               viewport={{ once: true, amount: 0.5 }}
             >
-              <Link href={`/projects/${item.id}`} passHref legacyBehavior>
-                <a>
-                  <div>
-                    <img src={item.src} alt={item.title} />
-                  </div>
-                  <p>{item.title}</p>
-                </a>
+              <Link href={`/projects/${item.id}`}>
+                <div>
+                  <img src={item.src} alt={item.title} />
+                </div>
+                <p>{item.title}</p>
               </Link>
             </ProjectItem>
           ))}
