@@ -1,5 +1,5 @@
 {
-  "extends": ["next/core-web-vitals", "airbnb", "prettier"],
+  "extends": ["next", "airbnb", "prettier"],
   "plugins": ["prettier"],
   "rules": {
     "semi": ["error", "never"],
