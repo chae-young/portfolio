@@ -1,18 +1,19 @@
-import { motion } from "framer-motion"
+'use client'
 
-import { useRouter } from "next/router"
+import { motion } from "framer-motion"
+import { useParams } from "next/navigation"
 import React from "react"
 import styled from "styled-components"
-import Layout from "../../components/Layout"
-import { PROJECTS } from "../../data"
+import Layout from "../../../components/Layout"
+import { PROJECTS } from "../../../data"
 
 const BackgroundAreaDiv = motion.div
 const BackgroundInnerDiv = motion.div
 const DetailImagesUl = motion.ul
 
 const Projects = () => {
-  const router = useRouter()
-  const { id } = router.query
+  const params = useParams()
+  const id = params.id
   const curProject = PROJECTS.find((item) => item.id === Number(id))
   const getPublicImagePath = (src) => {
     if (!src) return ""

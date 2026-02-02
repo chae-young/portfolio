@@ -1,6 +1,8 @@
+'use client'
+
 import React from "react"
-import Layout from "../components/Layout"
-import Profile from "../components/Profile"
+import Layout from "../../components/Layout"
+import Profile from "../../components/Profile"
 import styled from "styled-components"
 
 const About = () => {

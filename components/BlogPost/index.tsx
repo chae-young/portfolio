@@ -1,3 +1,5 @@
+"use client"
+
 import { motion } from "framer-motion"
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
@@ -92,9 +94,9 @@ const BlogPost = () => {
           }
           right={
             <BlogSection>
-              {posts.map((post, index) => (
+              {posts.map((post) => (
                 <motion.article
-                  key={index}
+                  key={post.guid || post.link}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ type: "spring", duration: 0.5 }}
