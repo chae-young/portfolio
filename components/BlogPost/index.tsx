@@ -6,8 +6,16 @@ import styled from "styled-components"
 import ContentBox from "../ContentBox"
 import TwoColumnLayout from "../TwoColumnLayout"
 
+interface Post {
+  guid: string
+  link: string
+  description: string
+  title: string
+  pubDate: string
+}
+
 const BlogPost = () => {
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState<Post[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [mounted, setMounted] = useState(false)
@@ -94,7 +102,7 @@ const BlogPost = () => {
           }
           right={
             <BlogSection>
-              {posts.map((post) => (
+              {posts.map((post: Post) => (
                 <motion.article
                   key={post.guid || post.link}
                   initial={{ opacity: 0, y: 50 }}

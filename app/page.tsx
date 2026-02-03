@@ -9,7 +9,6 @@ import Intro from "../components/Intro"
 import Layout from "../components/Layout"
 import Profile from "../components/Profile"
 import ProjectSection from "../components/ProjectSection"
-import AiAssistant from "components/AiAssistant"
 import { AiModal } from "components/AiModal"
 
 const Main = () => {
