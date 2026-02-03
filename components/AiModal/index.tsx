@@ -36,16 +36,19 @@ export function AiModal() {
                 <X width={30} height={30} />
               </Dialog.Close>
             </ContentTitle>
-            <ContentDesc ref={contentDescRef}>
-              {error ? (
-                <ErrorMessage>{error}</ErrorMessage>
-              ) : response === "" && loading ? (
-                <LoadingContent>
-                  <TypingIndicator active={true} />
-                </LoadingContent>
-              ) : (
-                <Markdown>{response}</Markdown>
-              )}
+            <ContentDesc ref={contentDescRef} asChild>
+              <div>
+                {error ? (
+                  <ErrorMessage>{error}</ErrorMessage>
+                ) : response === "" && loading ? (
+                  <LoadingContent>
+                    <TypingIndicator active={true} />
+                    <p>AI에게 요청 보내는 중...</p>
+                  </LoadingContent>
+                ) : (
+                  <Markdown>{response}</Markdown>
+                )}
+              </div>
             </ContentDesc>
           </ContentWrapper>
         </Content>
@@ -58,6 +61,7 @@ const Overlay = styled(Dialog.Overlay)`
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
+  z-index: 9;
 `
 
 const DialogButton = styled(Dialog.Trigger)`
@@ -95,12 +99,13 @@ const Content = styled(Dialog.Content)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 10;
 `
 
 const ContentWrapper = styled.div`
   padding: 20px;
   background: white;
-  width: min(1000px, 90vw);
+  width: min(1000px, 80vw);
   border-radius: 10px;
   overflow: hidden;
 `
@@ -129,7 +134,10 @@ const ErrorMessage = styled.div`
 const LoadingContent = styled.div`
   padding: 100px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: 20px;
 `
 
 const Markdown = styled(ReactMarkdown)`

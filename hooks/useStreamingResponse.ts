@@ -20,9 +20,11 @@ function setCache(text: string) {
 async function typeText(
   text: string,
   append: (char: string) => void,
+  controller: AbortController,
   interval = 10,
 ) {
   for (const char of text) {
+    if (controller.signal.aborted) return
     append(char)
     await new Promise((resolve) => setTimeout(resolve, interval))
   }
@@ -49,7 +51,9 @@ export function useStreamingResponse() {
     const cached = getCache()
     // 캐시된거 있으면 사용
     if (cached) {
-      await typeText(cached, append)
+      const controller = new AbortController()
+      abortRef.current = controller
+      await typeText(cached, append, controller)
       return
     }
 
