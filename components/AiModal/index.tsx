@@ -5,15 +5,11 @@ import { useState, useRef, useEffect } from "react"
 import styled from "styled-components"
 import TypingIndicator from "components/TypingIndicator"
 import { X } from "lucide-react"
-import AiButton from "components/AiButton"
-import { streamPortfolioDescription } from "utils/aiChat"
-
-const SESSION_STORAGE_KEY = "aiModalResponse"
+import { useStreamingResponse } from "hooks/useStreamingResponse"
 
 export function AiModal() {
-  const [loading, setLoading] = useState(false)
-  const [response, setResponse] = useState("")
-  const [error, setError] = useState<string | null>(null)
+  const { response, loading, error, fetchAndStream, reset } =
+    useStreamingResponse()
   const contentDescRef = useRef<HTMLDivElement>(null)
 
   // 텍스트가 추가될 때마다 스크롤을 하단으로 자동 이동
@@ -23,84 +19,9 @@ export function AiModal() {
     }
   }, [response])
 
-  const handleClick = async () => {
-    // 세션에 저장된 응답이 있는지 확인
-    const cachedResponse = sessionStorage.getItem(SESSION_STORAGE_KEY)
-    if (cachedResponse) {
-      setResponse(cachedResponse)
-      return
-    }
-
-    setLoading(true)
-    setResponse("")
-
-    try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        body: JSON.stringify({
-          prompt:
-            "이 개발자의 포트폴리오를 종합적으로 소개해주세요. 주요 강점, 프로젝트 경험, 기술 스택, 그리고 성과를 중심으로 친근하게 설명해주세요.",
-        }),
-      })
-
-      if (!res.body) return
-
-      const reader = res.body.getReader()
-      const decoder = new TextDecoder()
-
-      let buffer = ""
-      let done = false
-      let isDisplaying = false
-      let fullText = ""
-
-      // 버퍼에 있는 텍스트를 글자 단위로 자연스럽게 표시
-      const displayCharacters = async () => {
-        while (buffer.length > 0) {
-          const char = buffer.charAt(0)
-          buffer = buffer.slice(1)
-          fullText += char
-          setResponse((prev) => prev + char)
-          // 10ms 간격으로 글자 표시 (ChatGPT 스타일)
-          await new Promise((resolve) => setTimeout(resolve, 10))
-        }
-        // 버퍼가 비워졌으므로 플래그 리셋
-        isDisplaying = false
-      }
-
-      // 스트리밍 받기
-      while (!done) {
-        const { value, done: readerDone } = await reader.read()
-        done = readerDone
-
-        if (value) {
-          const text = decoder.decode(value, { stream: true })
-          buffer += text
-
-          // 글자 표시 시작
-          if (!isDisplaying) {
-            isDisplaying = true
-            displayCharacters()
-          }
-        }
-      }
-
-      // 남은 버퍼 모두 표시될 때까지 대기
-      while (buffer.length > 0) {
-        await new Promise((resolve) => setTimeout(resolve, 10))
-      }
-
-      // 완료된 응답을 세션에 저장
-      sessionStorage.setItem(SESSION_STORAGE_KEY, fullText)
-    } catch (error) {
-      console.error("Error:", error)
-    } finally {
-      setLoading(false)
-    }
-  }
-
   return (
-    <Dialog.Root>
-      <DialogButton onClick={handleClick} disabled={loading}>
+    <Dialog.Root onOpenChange={(open) => !open && reset()}>
+      <DialogButton onClick={fetchAndStream} disabled={loading}>
         {loading ? "요청중..." : "AI에게 요약 요청"}
         <RainbowBotIcon />
       </DialogButton>
@@ -119,7 +40,9 @@ export function AiModal() {
               {error ? (
                 <ErrorMessage>{error}</ErrorMessage>
               ) : response === "" && loading ? (
-                <TypingIndicator active={true} />
+                <LoadingContent>
+                  <TypingIndicator active={true} />
+                </LoadingContent>
               ) : (
                 <Markdown>{response}</Markdown>
               )}
@@ -202,6 +125,11 @@ const ErrorMessage = styled.div`
   color: #d32f2f;
   border-radius: 8px;
   border-left: 4px solid #d32f2f;
+`
+const LoadingContent = styled.div`
+  padding: 100px;
+  display: flex;
+  justify-content: center;
 `
 
 const Markdown = styled(ReactMarkdown)`
