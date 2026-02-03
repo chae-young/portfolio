@@ -1,54 +1,40 @@
-import styled, { keyframes, css } from "styled-components"
+import styled, { keyframes } from "styled-components"
 
-const popIn = keyframes`
-  0% {
-    transform: scale(0.95);
-    opacity: 0.6;
+// ChatGPT 스타일 타이핑 인디케이터 애니메이션
+const bounce = keyframes`
+  0%, 80%, 100% {
+    transform: translateY(0);
   }
-  50% {
-    transform: scale(1.02);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
+  40% {
+    transform: translateY(-6px);
   }
 `
 
-export const ChatInputWrapper = styled.div`
-  display: flex;
+const Wrapper = styled.div<{ active: boolean }>`
+  display: ${({ active }) => (active ? "flex" : "none")};
+  gap: 4px;
   align-items: center;
-  padding: 12px 16px;
-  border-radius: 16px;
-  background: #f5f5f5;
-  transition: box-shadow 0.2s ease;
-
-  &:focus-within {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-  }
 `
 
-export const ChatInput = styled.input`
-  flex: 1;
-  border: none;
-  background: transparent;
-  font-size: 15px;
-  outline: none;
-
-  &::placeholder {
-    color: #aaa;
-  }
+const Dot = styled.span<{ delay: number }>`
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #999;
+  animation: ${bounce} 1.4s ease-in-out infinite;
+  animation-delay: ${({ delay }) => `${delay}s`};
 `
 
-const TypingIndicator = styled.div<{ active: boolean }>`
-  margin-left: 8px;
-  font-size: 12px;
-  color: #666;
+interface TypingIndicatorProps {
+  active?: boolean
+}
 
-  ${({ active }) =>
-    active &&
-    css`
-      animation: ${popIn} 0.25s ease-out;
-    `}
-`
+const TypingIndicator = ({ active = true }: TypingIndicatorProps) => (
+  <Wrapper active={active}>
+    <Dot delay={0} />
+    <Dot delay={0.2} />
+    <Dot delay={0.4} />
+  </Wrapper>
+)
 
 export default TypingIndicator
