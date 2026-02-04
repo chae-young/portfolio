@@ -98,8 +98,13 @@ export function useStreamingResponse() {
       // 완료 시 캐시 저장
       setCache(fullText)
     } catch (err) {
+      console.error(err?.message || err)
       if (err instanceof Error && err.name === "AbortError") return
-      setError(err instanceof Error ? err.message : "요청 실패")
+      setError(
+        err instanceof Error
+          ? `문제가 발생했어요: ${err.message}\n조금 후 다시 시도해 주세요!`
+          : "AI 요청 처리 중 오류가 발생했습니다. 잠시 후 다시 시도하거나, 문제가 계속된다면 이메일로 문의해 주세요. 😊",
+      )
     } finally {
       setLoading(false)
     }
