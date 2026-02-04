@@ -1,5 +1,6 @@
 import { streamText } from "ai"
 import { google } from "@ai-sdk/google"
+import { NextResponse } from "next/server"
 
 export async function POST(req: Request) {
   const { prompt } = await req.json()
@@ -67,11 +68,15 @@ export async function POST(req: Request) {
 요청에 따라 이 개발자의 포트폴리오를 친근하게 요약하고 소개해주세요.
 기술 스택, 성과 지표, 프로젝트 경험, 개발 철학을 골고루 강조하되 자연스럽고 대화하듯이 설명해주세요.`
 
-  const result = await streamText({
-    model: google("gemini-2.5-flash"),
-    system: systemPrompt,
-    prompt: prompt,
-  })
+  try {
+    const result = await streamText({
+      model: google("gemini-2.5-flash-lite"),
+      system: systemPrompt,
+      prompt: prompt,
+    })
 
-  return result.toTextStreamResponse()
+    return result.toTextStreamResponse()
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 })
+  }
 }
