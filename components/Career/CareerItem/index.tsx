@@ -28,7 +28,7 @@ const ProjectIntro = styled.div`
   gap: 0.5rem;
 
   h4 {
-      font-size: 2.4rem;
+      font-size: 2rem;
       font-weight: 800;
       color: #fff;
     }
@@ -36,8 +36,22 @@ const ProjectIntro = styled.div`
     font-size: 16px;
 
   }
+
+  ${({ theme }) => theme.device.desktop} {
+    h4 {
+      font-size: 2.4rem;
+
+    }
+  }
 `
 const ProjectSkill = styled.div`
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     color: #dcdcdc;
+
+    ${({ theme }) => theme.device.desktop} {
+    h4 {
+      font-size: 1.8rem;
+
+    }
+  }
 `

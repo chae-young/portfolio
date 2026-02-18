@@ -29,13 +29,13 @@ const ProjectDescBox = styled.div`
   padding: 0 0 0 1.5rem;
   color: #dcdcdc;
   word-break: keep-all;
-  line-height: 4rem;
+
+  
   ul > li{
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     padding: 0 0 0 1.5rem;
-
   }
 
   strong::before,
@@ -43,7 +43,7 @@ const ProjectDescBox = styled.div`
     content: "";
     position: absolute;
     left: 0;
-    top: 1.5rem;
+    top: 0.7rem;
     width: 6px;
     height: 6px;
     border-radius: 50%;
@@ -53,5 +53,14 @@ const ProjectDescBox = styled.div`
   ul > li::before{
     background-color: transparent;
     border: 1px solid;
+  }
+
+  ${({ theme }) => theme.device.desktop} {
+    line-height: 2.4rem;
+    strong::before,
+    ul > li::before {
+        top: 0.5rem;
+    }
+
   }
 `

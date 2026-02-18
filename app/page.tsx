@@ -10,6 +10,7 @@ import Layout from "../components/Layout"
 import Profile from "../components/Profile"
 import ProjectSection from "../components/ProjectSection"
 import { AiModal } from "components/AiModal"
+import Skill from "components/Skill"
 
 const Main = () => {
   return (
@@ -18,6 +19,7 @@ const Main = () => {
         <Intro />
         <SubSection>
           <Profile />
+          <Skill/>
           <Career />
           {/* 인피니트 배너 영역 */}
           {/* <Slider

@@ -103,8 +103,12 @@ const CareerCompany = styled.h3`
   }
 `
 const CareerCompanyInfo = styled.p`
-  font-size: 2rem;
   margin-bottom: 2rem;
+  font-size: 1.6rem;
+
+  ${({ theme }) => theme.device.desktop} {
+    font-size: 2rem;
+  }
 `
 const CareerProjects = styled.ul`
   display: flex;
@@ -139,35 +143,6 @@ const CareerProjects = styled.ul`
   }
 `
 
-const ProjectDescBox = styled.div`
-  position: relative;
-  padding: 0 0 0 1.5rem;
-  color: #dcdcdc;
-  word-break: keep-all;
-  ul > li{
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 0 0 0 1.5rem;
 
-  }
-
-  strong::before,
-  ul > li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 1rem;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: ${({ theme }) => theme.colors.gray};
-  }
-
-  ul > li::before{
-    background-color: transparent;
-    border: 1px solid;
-  }
-`
 
 export default Career
