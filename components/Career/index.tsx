@@ -5,40 +5,10 @@ import React from "react"
 import styled from "styled-components"
 import ContentBox from "../ContentBox"
 import TwoColumnLayout from "../TwoColumnLayout"
+import { CAREER_DATA } from "data/index"
+import CareerItem from "./CareerItem"
+import { Carrot } from "lucide-react"
 
-const CAREER_DATA = [
-  {
-    id: 1,
-    status: true,
-    year: "2025.05 - 재직중",
-    company: "(주)디플루이드",
-    description: [
-      "React 기반 신규 서비스 구축 프로젝트 리딩, 핵심 기능 개발 구현",
-      "대기업(LG Uplus) 클라이언트 웹서비스 운영 담당, Vue.js 기반 레거시 시스템 개선 및 신규 기능 개발",
-    ],
-  },
-  {
-    id: 2,
-    status: false,
-    year: "2022.02 - 2023.08",
-    company: "(주)더블유컨셉코리아",
-    description: [
-      "W컨셉 기획전/프로모션 무드에 맞는 퍼블리싱 및 모션 구현",
-      "디자이너용 모션 탬플릿 개발 및 이슈 대응",
-    ],
-  },
-  {
-    id: 3,
-    status: false,
-    year: "2018.02 - 2021.02",
-    company: "(주)스타일쉽",
-    description: [
-      "FILA ,라이카, 골든구스, 콜럼비아 브랜드 포함 20여개 사이트 구축 및 유지보수",
-      "웹표준, 웹접근성 준수하며 시맨틱 마크업 및 프로모션 페이지 다수 제작",
-      "반응형 UI 구현 및 크로스 브라우징 대응",
-    ],
-  },
-]
 
 const Career = () => {
   return (
@@ -55,7 +25,7 @@ const Career = () => {
           right={
             <div>
               {CAREER_DATA.map((career) => (
-                <CareerItem
+                <CareerCon
                   key={career.id}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -66,12 +36,13 @@ const Career = () => {
                     {career.year}
                   </CareerStatus>
                   <CareerCompany>{career.company}</CareerCompany>
-                  <CareerDescription>
-                    {career.description.map((item, idx) => (
-                      <li key={idx}>{item}</li>
+                  <CareerCompanyInfo>{career.companyInfo}</CareerCompanyInfo>
+                  <CareerProjects>
+                    {career.projects.map((project, idx) => (
+                      <CareerItem project={project} key={idx}/>
                     ))}
-                  </CareerDescription>
-                </CareerItem>
+                  </CareerProjects>
+                </CareerCon>
               ))}
             </div>
           }
@@ -81,7 +52,7 @@ const Career = () => {
   )
 }
 
-const CareerItem = styled(motion.div)`
+const CareerCon = styled(motion.div)`
   margin-bottom: 60px;
   display: flex;
   flex-direction: column;
@@ -131,16 +102,27 @@ const CareerCompany = styled.h3`
     font-size: 2.6rem;
   }
 `
-
-const CareerDescription = styled.ul`
+const CareerCompanyInfo = styled.p`
+  font-size: 2rem;
+  margin-bottom: 2rem;
+`
+const CareerProjects = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
   font-size: 1.4rem;
-  color: ${({ theme }) => theme.colors.gray};
+  /* color: #d1d1d1; */
   margin: 0;
   li {
     position: relative;
-    padding: 0 0 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 
-    &::before {
+
+    /* padding: 0 0 1.5rem 1.5rem; */
+
+    /* &::before {
       content: "";
       position: absolute;
       left: 0;
@@ -149,11 +131,42 @@ const CareerDescription = styled.ul`
       height: 6px;
       border-radius: 50%;
       background-color: ${({ theme }) => theme.colors.gray};
-    }
+    } */
   }
 
   ${({ theme }) => theme.device.desktop} {
     font-size: 2rem;
+  }
+`
+
+const ProjectDescBox = styled.div`
+  position: relative;
+  padding: 0 0 0 1.5rem;
+  color: #dcdcdc;
+  word-break: keep-all;
+  ul > li{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 0 0 1.5rem;
+
+  }
+
+  strong::before,
+  ul > li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: ${({ theme }) => theme.colors.gray};
+  }
+
+  ul > li::before{
+    background-color: transparent;
+    border: 1px solid;
   }
 `
 

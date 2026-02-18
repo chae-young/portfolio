@@ -33,7 +33,7 @@ const Main = () => {
           <ProjectSection />
           <BlogPost />
           <Contact />
-          <AiModal />
+          {/* <AiModal /> */}
         </SubSection>
       </Layout>
     </>
