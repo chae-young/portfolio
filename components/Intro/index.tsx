@@ -1,3 +1,5 @@
+"use client"
+
 import { motion } from "framer-motion"
 import React from "react"
 import styled from "styled-components"
@@ -44,8 +46,7 @@ const Intro = () => {
           transition={{ type: "spring", duration: 1, delay: 0.5 }}
         >
           <p>
-            UI/UX 이해도가 높은 프론트엔드 개발자 이채영 입니다.{" "}
-            <br />
+            UI/UX 이해도가 높은 프론트엔드 개발자 이채영 입니다. <br />
             안정적이고 유지보수하기 쉬운 코드를 통해, 더 나은 서비스를
             만들어가는 것을 목표로 합니다.
           </p>

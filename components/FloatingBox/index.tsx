@@ -12,7 +12,7 @@ const FloatingBoxWrap = motion.div
 const FloatingBox = ({ children, size }: FloatingBoxProps) => {
   return (
     <FloatingBoxWrapSt
-      $size={size}
+      $size={size || ""}
       animate={{
         y: [-10, 10],
         rotate: 0,

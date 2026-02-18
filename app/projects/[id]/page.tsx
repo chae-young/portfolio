@@ -1,18 +1,19 @@
-import { motion } from "framer-motion"
+"use client"
 
-import { useRouter } from "next/router"
+import { motion } from "framer-motion"
+import { useParams } from "next/navigation"
 import React from "react"
 import styled from "styled-components"
-import Layout from "../../components/Layout"
-import { PROJECTS } from "../../data"
+import Layout from "../../../components/Layout"
+import { PROJECTS } from "../../../data"
 
 const BackgroundAreaDiv = motion.div
 const BackgroundInnerDiv = motion.div
 const DetailImagesUl = motion.ul
 
 const Projects = () => {
-  const router = useRouter()
-  const { id } = router.query
+  const params = useParams()
+  const id = params.id
   const curProject = PROJECTS.find((item) => item.id === Number(id))
   const getPublicImagePath = (src) => {
     if (!src) return ""
@@ -22,9 +23,15 @@ const Projects = () => {
   }
   return (
     <Layout>
-      <BackgroundArea $color={curProject?.color}>
+      {/* 
+        오류 원인:
+        <BackgroundArea $color={curProject?.color}> 이렇게 curProject?.color가 undefined일 수 있는 값이 전달되기 때문입니다.
+        styled-components/Emotion 등에서 타입이 string이어야 하는데 undefined도 들어올 수 있다고 판단 → 타입 오류 발생합니다.
+        해결법: undefined 일 때 fallback 값을 넣거나, string 보장 후 넘기기
+      */}
+      <BackgroundArea $color={curProject?.color ?? "#000"}>
         <BackgroundInner
-          $img={getPublicImagePath(curProject?.src)}
+          $img={getPublicImagePath(curProject?.src) ?? ""}
           initial={{ scale: 1.2, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           transition={{ duration: 2, type: "tween", ease: "easeInOut" }}
@@ -55,14 +62,14 @@ const Projects = () => {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="#fff"
               className="size-6"
               width="24"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="m19.5 8.25-7.5 7.5-7.5-7.5"
               />
             </svg>
@@ -119,7 +126,7 @@ const Projects = () => {
         </ProjectInfo>
         {/* 사진 유무 */}
         {curProject?.detailImg && (
-          <DetailImages $half={curProject?.detailImgHalf}>
+          <DetailImages $half={curProject?.detailImgHalf || false}>
             {curProject?.detailImg.map((img, idx) => (
               <motion.li
                 key={`${curProject?.title}-${idx}`}
