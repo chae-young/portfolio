@@ -370,7 +370,7 @@ export const projectData: Array<ProjectDetailData> = [
 
     issueItems: [
       {
-        title: "UI 개편(팝업 → Select Box)에 따른 API 응답 구조 변경 대응, 기존 수정·삭제 로직을 재사용 가능하도록 유지하면서 신규 UI 구조로 마이그레이션",
+        title: "UI 개편(팝업 → Select Box)으로 변경된 API 응답 구조를 분석, 기존 수정·삭제 로직을 재사용할 수 있도록 데이터 구조를 설계하여 신규 UI에 적용",
         groups: [
           {
             label: "이슈",
