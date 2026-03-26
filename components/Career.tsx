@@ -11,7 +11,7 @@ import { cn } from "@/lib/cn";
 const CAREERS = [
 	{
 		value: "dfluid",
-		period: "2025.05 — 재직중",
+		period: "2024.05 — 재직중",
 		company: "(주)디플루이드",
 		desc: "프론트엔드 전문 에이전시",
 		projects: [

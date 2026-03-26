@@ -37,11 +37,11 @@ const SKILLS = [
 		icon: "",
 		title: "Tools & Workflow",
 		items: [
+			{ label: "Git", hi: true },
 			{ label: "Figma", hi: true },
-			{ label: "Git", hi: false },
 			{ label: "Jira", hi: false },
-			{ label: "Claude Code", hi: false },
 			{ label: "Cursor", hi: false },
+			{ label: "Claude Code", hi: false },
 		],
 	},
 ];

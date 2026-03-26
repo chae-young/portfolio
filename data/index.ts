@@ -666,7 +666,7 @@ export const projectData: Array<ProjectDetailData> = [
       { label: "크로스브라우징", outline: true },
     ],
     stats: [
-      { label: "프로젝트 기간", value: "2019 — 2022", sub: "약 3년" },
+      { label: "프로젝트 기간", value: "2018 — 2021", sub: "3년" },
       { label: "역할", value: "Publisher", sub: "UI팀" },
     ],
     website: "",
