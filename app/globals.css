@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
+
+@layer base {
+  :root {
+    font-family: "Pretendard Variable", "Pretendard", -apple-system, system-ui,
+      sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-bg text-fg overflow-x-hidden;
+  }
+
+  ::selection {
+    @apply bg-accent text-fg;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer utilities {
+  .basic-content {
+    @apply max-w-content mx-auto w-full;
+  }
+  .fluid-hero {
+    font-size: clamp(4rem, 10vw, 10rem);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+  }
+
+  .fluid-h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .fluid-h3 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .fluid-contact {
+    font-size: clamp(3rem, 8vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+  }
+}

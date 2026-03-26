@@ -1,52 +1,33 @@
-// 프로젝트 관련 타입
-export interface ProjectOverviewItem {
-  title: string;
-  details: string[] | null;
+export interface CareerItem {
+  period: string
+  company: string
+  description: string
+  projects: {
+    title: string
+    period: string
+    tech: string[]
+    highlights: string[]
+  }[]
 }
 
-export interface Project {
-  id: number;
-  title: string;
-  src: string;
-  color: string;
-  desc: string;
-  overview: ProjectOverviewItem[];
-  detailImg?: string[];
-  detailImgHalf?: boolean;
-  date: string;
-  skill: string[];
+export interface ProjectItem {
+  id: number
+  title: string
+  image: string
+  href: string
+  tags: string[]
 }
 
-// 블로그 포스트 관련 타입
-export interface BlogPost {
-  link: string;
-  title: string;
-  pubDate: string;
-  description: string;
-  thumbnail?: string;
+export interface SkillCategory {
+  title: string
+  items: string[]
 }
 
-// 컴포넌트 Props 타입
-export interface MoreBtnProps {
-  to: string;
-  text: string;
-  dark?: boolean;
-}
-
-export interface SubSectionProps {
-  title: string;
-  subTitle: string;
-  children: React.ReactNode;
-}
-
-export interface ContentBoxProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-// 레이아웃 관련 타입
-export type Breakpoint = 'mobileS' | 'mobileL' | 'tablet' | 'tabletL' | 'desktop';
-
-export interface LayoutProps {
-  children: React.ReactNode;
+export interface ProjectCardItem {
+  id: string
+  title: string
+  image: string
+  tags: string[]
+  large: boolean
+  metric: string
 }
