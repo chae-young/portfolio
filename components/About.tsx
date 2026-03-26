@@ -48,7 +48,7 @@ export default function About() {
 					))}
 
 					<motion.a
-						href="https://tsrvalbpgnmahobyqzrc.supabase.co/storage/v1/object/public/public-pdf/porofile.pdf"
+						href="https://tsrvalbpgnmahobyqzrc.supabase.co/storage/v1/object/public/public-pdf/profile.pdf"
 						target="_blank"
 						rel="noopener noreferrer"
 						className="inline-flex items-center gap-2 mt-8 text-sm font-medium px-6 py-3 rounded-full bg-fg text-bg hover:opacity-80 transition-opacity"
