@@ -1,88 +1,23 @@
-"use client"
+import About from "@/components/About";
+import Blog from "@/components/Blog";
+import Career from "@/components/Career";
+import Contact from "@/components/Contact";
+import Hero from "@/components/Hero";
+import Navigation from "@/components/Navigation";
+import Projects from "@/components/Projects";
+import Skill from "@/components/Skill";
 
-import React from "react"
-import styled from "styled-components"
-import BlogPost from "../components/BlogPost"
-import Career from "../components/Career"
-import Contact from "../components/Contact"
-import Intro from "../components/Intro"
-import Layout from "../components/Layout"
-import Profile from "../components/Profile"
-import ProjectSection from "../components/ProjectSection"
-import { AiModal } from "components/AiModal"
-import Skill from "components/Skill"
-
-const Main = () => {
-  return (
-    <>
-      <Layout>
-        <Intro />
-        <SubSection>
-          <Profile />
-          <Skill/>
-          <Career />
-          {/* 인피니트 배너 영역 */}
-          {/* <Slider
-            slideArr={[
-              "Work Experience",
-              "Work Experience",
-              "Work Experience",
-              "Work Experience",
-            ]}
-          /> */}
-          {/* // 인피니트 배너 영역 */}
-          {/* <ProjectArea /> */}
-          <ProjectSection />
-          <BlogPost />
-          <Contact />
-          {/* <AiModal /> */}
-        </SubSection>
-      </Layout>
-    </>
-  )
+export default function Home() {
+	return (
+		<main className="bg-bg min-h-screen">
+			<Navigation />
+			<Hero />
+			<About />
+			<Skill />
+			<Career />
+			<Projects />
+			<Blog />
+			<Contact />
+		</main>
+	);
 }
-
-const MainSection = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 10rem 2rem;
-  position: relative;
-  height: 70vh;
-  box-sizing: border-box;
-  ${({ theme }) => theme.device.desktop} {
-    max-width: ${({ theme }) => theme.deviceSizes.maxSize};
-    margin: auto;
-    height: 100vh;
-    align-items: stretch;
-  }
-`
-const SubSection = styled.section`
-  background: ${({ theme }) => theme.colors.black};
-  padding: 10rem 2rem;
-  color: #fff;
-  article + article {
-    margin-top: 10rem;
-  }
-  ${({ theme }) => theme.device.desktop} {
-    padding: 10rem 6rem;
-
-    article + article {
-      margin-top: 20rem;
-    }
-  }
-
-  /* padding: 10rem 2rem;
-	position: relative;
-	height: 70vh;
-	box-sizing: border-box;
-	${({ theme }) => theme.device.desktop} {
-		max-width: ${({ theme }) => theme.deviceSizes.maxSize};
-		margin: auto;
-		height: 100vh;
-		align-items: stretch;
-	} */
-`
-
-export default Main

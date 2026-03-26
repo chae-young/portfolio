@@ -1,44 +1,35 @@
-import type { Metadata } from 'next'
-import React from 'react'
-import StyledComponentsRegistry from './registry'
-import Theme from './theme-provider'
+import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'LeeChaeng Portfolio',
-  description: 'Frontend Developer Portfolio',
-  icons: '/favicon.ico',
-}
+	title: "이채영 | Frontend Developer",
+	description: "UI/UX 이해도가 높은 프론트엔드 개발자 이채영의 포트폴리오",
+};
 
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode
+	children: React.ReactNode;
 }) {
-  return (
-    <html lang="ko">
-      <head>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400..900&display=swap"
-          rel="stylesheet"
-        />
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=default%2Ces2016%2Ces2015%2Ces2017%2Ces2018%2Ces2019" />
-      </head>
-      <body>
-        <StyledComponentsRegistry>
-          <Theme>
-            {children}
-          </Theme>
-        </StyledComponentsRegistry>
-      </body>
-    </html>
-  )
+	return (
+		<html lang="ko">
+			<head>
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
+				<link
+					rel="preconnect"
+					href="https://fonts.gstatic.com"
+					crossOrigin="anonymous"
+				/>
+				<link
+					href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+					rel="stylesheet"
+				/>
+				<link
+					href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
+					rel="stylesheet"
+				/>
+			</head>
+			<body>{children}</body>
+		</html>
+	);
 }

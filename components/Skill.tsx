@@ -1,111 +1,107 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import React from "react"
-import styled from "styled-components"
-import Content from "./ContentBox"
-import MoreBtn from "./MoreBtn"
+import { motion } from "framer-motion";
+import Label from "@/components/Label";
+import { useInView } from "@/hooks/useInView";
+import { cn } from "@/lib/cn";
 
-const SKILL_DATA = [
-  {
-    title: 'Frontend Development',
-    contents: [
-      'React, Next.js, TypeScript 기반 SPA/SSR 애플리케이션 개발',
-      'Vue.js, Nuxt 레거시 시스템 운영 및 유지보수 경험',
-      'Zustand, Tanstack-query, Vuex 활용'
-    ]
-  },
-  {
-    title: 'Styling & UI',
-    contents: [
-      'Tailwind CSS, SCSS, Styled-Components 다양한 스타일링',
-      '반응형 UI, 모바일 퍼스트 구현',
-      'Radix UI, Shadcn UI 등 컴포넌트 라이브러리 활용'
-    ]
-  },
-  {
-    title: 'Collaboration & Tools',
-    contents: [
-      'Git/Jira 기반 협업',
-      'Figma를 활용한 협업'
-    ]
-  },
-  {
-    title: 'AI-Assisted Development',
-    contents: [
-      'Claude Code, Cursor 활용한 개발',
-    ]
-  }
-]
+const SKILLS = [
+	{
+		icon: "",
+		title: "Frontend Development",
+		items: [
+			{ label: "React", hi: true },
+			{ label: "Next.js", hi: true },
+			{ label: "JavaScript", hi: true },
+			{ label: "TypeScript", hi: true },
+			{ label: "HTML", hi: true },
+			{ label: "CSS", hi: true },
+			// { label: "Vue.js", hi: false },
+			// { label: "Nuxt", hi: false },
+			{ label: "Zustand", hi: false },
+			{ label: "TanStack Query", hi: false },
+		],
+	},
+	{
+		icon: "",
+		title: "Styling & UI",
+		items: [
+			{ label: "Tailwind CSS", hi: true },
+			{ label: "Styled-Components", hi: true },
+			{ label: "SCSS", hi: false },
+			{ label: "Radix UI", hi: false },
+			{ label: "Shadcn UI", hi: false },
+		],
+	},
+	{
+		icon: "",
+		title: "Tools & Workflow",
+		items: [
+			{ label: "Git", hi: true },
+			{ label: "Figma", hi: true },
+			{ label: "Jira", hi: false },
+			{ label: "Cursor", hi: false },
+			{ label: "Claude Code", hi: false },
+		],
+	},
+];
 
-const Skill = () => {
-  return (
-    <article>
-      <Content title="Skill">
-        <SkilList
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, type: "spring", delay: 0.3 }}
-            viewport={{ once: true, amount: 0.5 }}
-          >
-            {SKILL_DATA.map((data, idx) => 
-              <section key={idx}>
-              <h3>{data.title}</h3> 
-              <ul>
-                {data.contents.map((content, idx) => 
-                  <li key={idx}>{content}</li>
-                )}
-              </ul>
-              </section>
-            )}
+export default function Skill() {
+	const { ref, inView } = useInView();
 
-        </SkilList>
-      </Content>
-    </article>
-  )
+	return (
+		<section
+			id="skill"
+			className="px-6 py-20 border-t border-border lg:px-6 md:py-20 sm:px-5 sm:py-16"
+			ref={ref}
+		>
+			<div className="basic-content">
+				<Label>Skills</Label>
+				<h2
+					className="font-normal mb-14 sm:mb-10"
+					style={{ fontSize: "clamp(1.8rem, 3.5vw, 3rem)", lineHeight: 1.1 }}
+				>
+					탄탄하게 쌓아온
+					<br />
+					<span className="text-muted">기술 스택</span>
+				</h2>
+
+				{/* 카드 그리드 — 모바일에서는 세로 스택 */}
+				<div className="grid md:grid-cols-3 gap-px bg-border rounded-[20px] overflow-hidden grid-cols-1">
+					{SKILLS.map((skill, i) => (
+						<motion.div
+							key={skill.title}
+							className="bg-card px-8 py-9 hover:bg-bg transition-colors duration-200 sm:px-6 sm:py-7"
+							initial={{ opacity: 0, y: 24 }}
+							animate={inView ? { opacity: 1, y: 0 } : {}}
+							transition={{
+								duration: 0.6,
+								delay: i * 0.1,
+								ease: [0.16, 1, 0.3, 1],
+							}}
+						>
+							<h3 className="text-[0.75rem] font-semibold tracking-[0.1em] uppercase mb-5 text-fg">
+								{skill.title}
+							</h3>
+							<div className="flex flex-wrap gap-2">
+								{skill.items.map(({ label, hi }) => (
+									<span
+										key={label}
+										className={cn(
+											"text-xs px-3 py-1 rounded-full border transition-colors",
+											hi
+												? "bg-accent border-accent text-fg font-semibold"
+												: "bg-bg border-border text-fg",
+										)}
+									>
+										{label}
+									</span>
+								))}
+							</div>
+						</motion.div>
+					))}
+				</div>
+			</div>
+		</section>
+	);
 }
-
-const SkilList = styled(motion.div)`
-  max-width: ${({ theme }) => theme.deviceSizes.maxSize};
-  margin: auto;
-  width: 100%;
-  font-size: 1.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-  margin-bottom: 0.5rem;
-
-  h3 {
-    font-size: 3rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
-  li {
-    position: relative;
-    padding-left: 20px;
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 1rem;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background-color: ${({ theme }) => theme.colors.gray};
-    }
-  }
-  ${({ theme }) => theme.device.desktop} {
-    font-size: 2rem;
-    
-    flex-direction: row;
-    flex-wrap: wrap;
-
-    > section {
-      flex:  1 1 40%;
-    }
-  }
-`
-
-
-export default Skill
